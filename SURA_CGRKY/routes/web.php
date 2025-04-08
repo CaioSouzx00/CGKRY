@@ -43,3 +43,7 @@ Route::get('/admin/logout', function () {
     return redirect()->route('admin.login.form');
 })->name('admin.logout');
 
+use App\Http\Controllers\FornecedorController;
+
+Route::get('/admin/fornecedores/create', [FornecedorController::class, 'create'])->name('fornecedores.create');
+Route::post('/admin/fornecedores/store', [FornecedorController::class, 'store'])->name('fornecedores.store');
