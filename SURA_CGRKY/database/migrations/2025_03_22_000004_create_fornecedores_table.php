@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->string('cnpj')->unique();
             $table->string('telefone');
             $table->string('email')->unique();
+            $table->string('senha');
             $table->timestamps();
         });
     }

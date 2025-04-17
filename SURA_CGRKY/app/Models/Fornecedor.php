@@ -4,14 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Adiciona isso
 
-class Fornecedor extends Model
+class Fornecedor extends Authenticatable // Herda de Authenticatable
 {
     use HasFactory;
     protected $table = 'fornecedores'; // <-- Adiciona isso aqui
 
     protected $fillable = [
         'nome_empresa', 'cnpj', 'senha', 'telefone', 'email',
+    ];
+
+    protected $hidden = [
+        'senha', // Adiciona isso para ocultar a senha em respostas JSON
     ];
 
     public function endereco()

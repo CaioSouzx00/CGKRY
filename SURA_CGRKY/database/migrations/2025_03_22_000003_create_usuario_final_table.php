@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->string('sexo');
             $table->date('data_nascimento');
             $table->string('email')->unique();
+            $table->string('senha');
             $table->string('telefone');
             $table->string('cpf')->unique();
             $table->timestamps();

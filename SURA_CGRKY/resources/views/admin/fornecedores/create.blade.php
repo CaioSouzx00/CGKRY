@@ -1,32 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fornecedores</title>
+    <title>Cadastrar Fornecedor</title>
 </head>
 <body>
-    
-<h1>Cadastrar Fornecedor</h1>
 
-<form method="POST" action="{{ route('fornecedores.store') }}">
-    @csrf
+    <h1>Cadastrar Fornecedor</h1>
 
-    <input type="text" name="nome_empresa" placeholder="Nome da Empresa"><br>
-    <input type="text" name="cnpj" placeholder="CNPJ"><br>
-    <input type="password" name="senha" placeholder="Senha"><br>
-    <input type="text" name="telefone" placeholder="Telefone"><br>
-    <input type="email" name="email" placeholder="Email"><br><br><br>
+    <!-- Mensagem de sucesso, se existir -->
+    @if(session('success'))
+        <div style="color: green;">
+            {{ session('success') }}
+        </div>
+    @endif
 
-    <input type="text" name="cidade" placeholder="Cidade"><br>
-    <input type="text" name="cep" placeholder="CEP"><br>
-    <input type="text" name="bairro" placeholder="Bairro"><br>
-    <input type="text" name="estado" placeholder="Estado"><br>
-    <input type="text" name="rua" placeholder="Rua"><br>
+    <!-- Formulário de Cadastro -->
+    <form action="{{ route('fornecedores.store') }}" method="POST">
+        @csrf
 
-    <button type="submit">Cadastrar</button>
-</form>
+        <!-- Nome da Empresa -->
+        <label for="nome_empresa">Nome da Empresa:</label>
+        <input type="text" id="nome_empresa" name="nome_empresa" required><br><br>
 
+        <!-- CNPJ -->
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required><br><br>
+
+        <!-- Telefone -->
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required><br><br>
+
+        <!-- E-mail -->
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- Senha -->
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required><br><br>
+
+        <!-- Botão para Submeter -->
+        <button type="submit">Cadastrar</button>
+    </form>
 
 </body>
 </html>

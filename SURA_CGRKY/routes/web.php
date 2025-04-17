@@ -5,6 +5,7 @@ use App\Http\Controllers\UsuarioFinalController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FornecedorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,7 +44,14 @@ Route::get('/admin/logout', function () {
     return redirect()->route('admin.login.form');
 })->name('admin.logout');
 
-use App\Http\Controllers\FornecedorController;
-
 Route::get('/admin/fornecedores/create', [FornecedorController::class, 'create'])->name('fornecedores.create');
 Route::post('/admin/fornecedores/store', [FornecedorController::class, 'store'])->name('fornecedores.store');
+
+// Exibir o formulário de login do fornecedor
+Route::get('/fornecedor/login', [FornecedorController::class, 'showLoginForm'])->name('fornecedor.login');
+
+// Processar o login do fornecedor
+Route::post('/fornecedor/login', [FornecedorController::class, 'login'])->name('fornecedor.login.submit');
+
+// Rota do dashboard do fornecedor (após o login)
+Route::get('/fornecedor/dashboard', [FornecedorController::class, 'dashboard'])->middleware('auth')->name('fornecedor.dashboard');
