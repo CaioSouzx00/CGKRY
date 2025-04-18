@@ -21,7 +21,8 @@
             </div>
         @endif
 
-        <form action="{{ route('fornecedor.login.submit') }}" method="POST">
+        <form action="{{ route('fornecedor.login.post') }}" method="POST">
+
             @csrf
 
             <div class="mb-4">
