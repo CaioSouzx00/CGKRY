@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable; // Adiciona isso
 
 class Fornecedor extends Authenticatable // Herda de Authenticatable
 {
-    use HasFactory;
     protected $table = 'fornecedores'; // <-- Adiciona isso aqui
 
     protected $fillable = [

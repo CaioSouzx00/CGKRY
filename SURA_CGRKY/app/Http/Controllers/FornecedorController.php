@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class FornecedorController extends Controller
 {
@@ -17,7 +19,6 @@ class FornecedorController extends Controller
     // Processar o cadastro do fornecedor
     public function store(Request $request)
     {
-        // Validação dos dados do fornecedor
         $request->validate([
             'nome_empresa' => 'required|string',
             'cnpj' => 'required|string|unique:fornecedores,cnpj',
@@ -26,63 +27,69 @@ class FornecedorController extends Controller
             'senha' => 'required|string',
         ]);
 
-        // Criação do fornecedor
         Fornecedor::create([
             'nome_empresa' => $request->nome_empresa,
             'cnpj' => $request->cnpj,
             'telefone' => $request->telefone,
             'email' => $request->email,
-            'senha' => bcrypt($request->senha),  // Criptografa a senha
+            'senha' => bcrypt($request->senha),
         ]);
 
-        // Redireciona com uma mensagem de sucesso
         return redirect()->route('fornecedores.create')->with('success', 'Fornecedor cadastrado com sucesso!');
     }
 
     // Mostrar o formulário de login do fornecedor
     public function showLoginForm()
     {
-        return view('admin.fornecedores.login'); // Alterei para apontar para a pasta admin
+        return view('admin.fornecedores.login');
     }
-
 
     // Processar o login do fornecedor
     public function login(Request $request)
     {
-        // Validar as credenciais de login
         $request->validate([
             'email' => 'required|email',
             'senha' => 'required|string',
         ]);
 
-        // Procurar o fornecedor pelo e-mail
         $fornecedor = Fornecedor::where('email', $request->email)->first();
 
-        // Verificar se o fornecedor existe e se a senha está correta
         if ($fornecedor && Hash::check($request->senha, $fornecedor->senha)) {
-            // Logar o fornecedor
-            Auth::login($fornecedor);
+            Auth::login($fornecedor); // Autentica (opcional, mas mantém compatibilidade com Auth)
 
-            // Redirecionar para o dashboard
+            // Salva o fornecedor na sessão
+            Session()->put('fornecedor', $fornecedor);
+
             return redirect()->route('fornecedor.dashboard');
         }
 
-        // Se falhar, retornar com erro
         return back()->withErrors([
             'email' => 'E-mail ou senha incorretos.',
         ]);
     }
 
-    // Dashboard após o login
+    // Dashboard do fornecedor (usa a view do usuário final)
     public function dashboard()
     {
-        return view('admin.fornecedor.dashboard'); // Alterei para apontar para a pasta admin
+        if (!Session::has('fornecedor')) {
+            return redirect()->route('fornecedor.login');
+        }
+
+        $fornecedor = Session::get('fornecedor');
+
+        // Reaproveita a view do usuário final
+        $usuario = $fornecedor;
+        $isFornecedor = true;
+
+        return view('usuario_final.dashboard', compact('usuario', 'isFornecedor'));
     }
 
-    // Logout (opcional)
+    // Logout do fornecedor
     public function logout()
     {
-        Auth::logout();
+        Auth::logout(); // Faz o logout
+        Session()->forget('fornecedor'); // Limpa a sessão do fornecedor
+
         return redirect()->route('fornecedor.login');
     }
 }

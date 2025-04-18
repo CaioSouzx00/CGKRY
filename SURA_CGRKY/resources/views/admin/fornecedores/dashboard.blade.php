@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <h1>Bem-vindo ao seu Dashboard, Fornecedor!</h1>
+    <h1>Bem-vindo ao seu Dashboard, Fornecedor {{ Auth::user()->nome_empresa }}!</h1>
 
     <p>Você está logado com sucesso.</p>
 
