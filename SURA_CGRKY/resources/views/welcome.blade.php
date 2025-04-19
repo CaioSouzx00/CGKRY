@@ -26,7 +26,6 @@
       padding: 0;
       height: 100vh;
       position: relative;
-      font-sans;
       color: white;
     }
 

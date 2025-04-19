@@ -17,4 +17,5 @@ class UsuarioFinal extends Model
         'telefone',
         'cpf',
     ];
+
 }

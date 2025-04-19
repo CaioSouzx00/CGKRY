@@ -22,14 +22,17 @@
 </head>
 <body>
 
-    @if ($isFornecedor)
-        <h2>Painel do Fornecedor</h2>
-        <div class="card">
-            <p><strong>Empresa:</strong> {{ $usuario->nome_empresa }}</p>
-            <p><strong>CNPJ:</strong> {{ $usuario->cnpj }}</p>
-            <p><strong>Email:</strong> {{ $usuario->email }}</p>
-            <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
-        </div>
+@if ($isFornecedor)
+    <h2>Painel do Fornecedor</h2>
+    <div class="card">
+        <p><strong>Empresa:</strong> {{ $usuario->nome_empresa }}</p>
+        <p><strong>CNPJ:</strong> {{ $usuario->cnpj }}</p>
+        <p><strong>Email:</strong> {{ $usuario->email }}</p>
+        <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
+
+        <!-- Link para página de endereço -->
+        <a href="{{ route('fornecedor.endereco.create', ['id' => $usuario->id]) }}">Cadastrar/Editar Endereço</a>
+    </div>
     @else
         <h2>Painel do Usuário</h2>
         <div class="card">
@@ -37,6 +40,10 @@
             <p><strong>CPF:</strong> {{ $usuario->cpf }}</p>
             <p><strong>Email:</strong> {{ $usuario->email }}</p>
             <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
+
+            <!-- Link para página de endereço do usuário -->
+            <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}">Cadastrar/Editar Endereço</a>
+
         </div>
     @endif
 
