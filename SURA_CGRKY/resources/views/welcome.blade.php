@@ -76,12 +76,6 @@
       background-color: rgba(75, 0, 119, 0.3);
     }
 
-    .footer {
-      font-size: 0.875rem;
-      color: rgba(100, 100, 255, 0.7);
-      text-align: center;
-      margin-top: 2rem;
-    }
   </style>
 </head>
 <body>
@@ -105,7 +99,7 @@
         Painel de Administração
       </h2>
 
-      <p class="text-gray-300 mb-10">Gerencie cadastros, acessos e operações do sistema</p>
+      <p class="text-white/60 mb-10 hover:text-white transition-colors duration-300">Gerencie cadastros, acessos e operações do sistema</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
         <!-- Card: Cadastrar Usuário -->
@@ -134,7 +128,7 @@
       </div>
     </section>
 
-    <footer class="footer">
+    <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
       &copy; 2025 <strong>SURA</strong> - Sistema Unificado de Registro e Administração
     </footer>
   </main>
