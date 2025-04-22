@@ -15,14 +15,17 @@ class UsuarioFinalController extends Controller
 
     public function store(Request $request)
     {
+        // Regras de validação
         $request->validate([
             'sexo' => 'required',
-            'nome_completo' => 'required|string|max:255',
+            'nome_completo' => 'required|string|max:50',
             'data_nascimento' => 'required|date',
             'email' => 'required|email|unique:usuario_final,email',
-            'senha' => 'required|min:6',
+            'senha' => 'required|string|min:6',
             'telefone' => 'required',
             'cpf' => 'required|regex:/^\d{11}$/|unique:usuario_final',
+        ], [
+            'senha.min' => 'A senha deve ter no mínimo 6 caracteres.',
         ]);
 
         // Prepara os dados e criptografa a senha
@@ -32,6 +35,7 @@ class UsuarioFinalController extends Controller
         // Salva no banco
         UsuarioFinal::create($dados);
 
+        // Redireciona com uma mensagem de sucesso
         return redirect()->route('usuario_final.create')->with('success', 'Usuário cadastrado com sucesso!');
     }
 }
