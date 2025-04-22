@@ -42,7 +42,8 @@
             <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
 
             <!-- Link para página de endereço do usuário -->
-            <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}">Cadastrar/Editar Endereço</a>
+            <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}">Cadastrar</a>
+            
 
         </div>
     @endif
