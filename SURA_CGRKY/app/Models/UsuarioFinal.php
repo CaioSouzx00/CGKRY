@@ -18,4 +18,11 @@ class UsuarioFinal extends Model
         'cpf',
     ];
 
+    // Modelo UsuarioFinal
+    public function enderecos()
+        {   
+            return $this->hasMany(EnderecoUsuarioFinal::class, 'id_usuario');
+        }
+
+
 }

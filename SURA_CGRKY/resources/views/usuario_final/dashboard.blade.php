@@ -6,6 +6,7 @@
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Estilos para o fundo animado e partículas */
     @keyframes moveBackground {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -63,30 +64,28 @@
     .line2 { width: 60vw; top: 50%; left: 10%; animation-duration: 15s; }
     .line3 { width: 70vw; top: 70%; left: 15%; animation-duration: 18s; }
 
-    /* Aumento do tamanho do card */
     .card {
       background: rgba(0, 0, 0, 0.5);
       border: 2px solid rgba(75, 0, 119, 0.6);
       border-radius: 12px;
-      padding: 2.5rem; /* Aumento no padding para mais espaço interno */
+      padding: 2.5rem;
       color: rgba(200, 200, 255, 0.9);
       transition: background-color 0.3s ease;
-      width: 100%; /* Ajusta a largura para ocupar mais espaço */
-      max-width: 700px; /* Aumento do max-width para um card maior */
-      margin: 1.5rem auto; /* Centraliza o card e aumenta a margem */
+      width: 100%;
+      max-width: 700px;
+      margin: 1.5rem auto;
     }
 
     .card p {
-      font-size: 1.1rem; /* Aumentando o tamanho da fonte dos dados */
+      font-size: 1.1rem;
     }
 
     .card a {
-      margin-top: 1.5rem; /* Adiciona espaçamento acima do link */
+      margin-top: 1.5rem;
     }
 
-    /* Adicionando margin-top ao contêiner principal para empurrar o conteúdo para baixo */
     main {
-      margin-top: 10vh; /* Ajustando para empurrar para baixo */
+      margin-top: 10vh;
     }
   </style>
 </head>
@@ -117,11 +116,19 @@
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
         <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
 
-        <!-- Link para página de endereço com animação em Tailwind -->
-        <a href="{{ route('fornecedor.endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+        <!-- Botão de Listar Endereços -->
+        <a href="{{ route('fornecedor.endereco.index', $usuario->id) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+          <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+          <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+            Listar Endereços
+          </span>
+        </a>
+
+        <!-- Botão de Cadastrar Endereço -->
+        <a href="{{ route('fornecedor.endereco.create', $usuario->id) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
           <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
           <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-            Cadastrar/Editar Endereço
+            Cadastrar Endereço
           </span>
         </a>
       </div>
@@ -135,13 +142,26 @@
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
         <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
 
-        <!-- Link para página de endereço do usuário com animação em Tailwind -->
-        <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-          <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-          <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-            Endereço
-          </span>
-        </a>
+        <!-- Botões lado a lado -->
+        <div class="flex space-x-4 mt-4">
+          <!-- Cadastrar -->
+          <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+            <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+            <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+              Cadastrar Endereço
+            </span>
+          </a>
+
+          <!-- Editar -->
+          @if ($usuario->enderecos->isNotEmpty())
+            <a href="{{ route('endereco.index', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+              <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+              <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+                Editar Endereço
+              </span>
+            </a>
+          @endif
+        </div>
       </div>
     @endif
 

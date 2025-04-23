@@ -85,6 +85,13 @@
         Cadastro de Endereço
       </h1>
 
+      <!-- Mensagem de sucesso -->
+    @if (session('success'))
+        <div class="bg-green-600 text-white p-4 mb-6 rounded shadow-md text-center font-semibold">
+            {{ session('success') }}
+        </div>
+    @endif
+    <!-- Mensagem de erro -->
       @if ($errors->any())
             <div class="bg-red-500 text-white p-4 mb-6 rounded">
                 <ul>

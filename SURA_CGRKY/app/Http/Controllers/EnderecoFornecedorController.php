@@ -8,6 +8,14 @@ use App\Models\Fornecedor;
 
 class EnderecoFornecedorController extends Controller
 {
+    public function index($id)
+    {
+        $fornecedor = Fornecedor::findOrFail($id);
+        $enderecos = EnderecoFornecedor::where('fornecedor_id', $id)->get();
+
+        return view('admin.fornecedores.endereco.index', compact('fornecedor', 'enderecos'));
+    }
+
     public function create($id)
     {
         $fornecedor = Fornecedor::findOrFail($id);
@@ -33,10 +41,38 @@ class EnderecoFornecedorController extends Controller
             'cep' => $request->cep,
         ]);
 
-        // Buscar o fornecedor após salvar o endereço
-        $fornecedor = Fornecedor::findOrFail($id);
+        return redirect()->route('fornecedor.endereco.index', $id)->with('success', 'Endereço cadastrado com sucesso!');
+    }
 
-        // Retornar a view correta com o fornecedor
-        return view('admin.fornecedores.endereco.create', compact('fornecedor'));
+    public function edit($id, $endereco_id)
+    {
+        $fornecedor = Fornecedor::findOrFail($id);
+        $endereco = EnderecoFornecedor::where('fornecedor_id', $id)->where('id', $endereco_id)->firstOrFail();
+
+        return view('admin.fornecedores.endereco.edita', compact('fornecedor', 'endereco'));
+    }
+
+    public function update(Request $request, $id, $endereco_id)
+    {
+        $request->validate([
+            'cidade' => 'required|string',
+            'estado' => 'required|string',
+            'bairro' => 'required|string',
+            'rua' => 'required|string',
+            'cep' => 'required|string',
+        ]);
+
+        $endereco = EnderecoFornecedor::where('fornecedor_id', $id)->where('id', $endereco_id)->firstOrFail();
+        $endereco->update($request->all());
+
+        return redirect()->route('fornecedor.endereco.index', $id)->with('success', 'Endereço atualizado com sucesso!');
+    }
+
+    public function destroy($id, $endereco_id)
+    {
+        $endereco = EnderecoFornecedor::where('fornecedor_id', $id)->where('id', $endereco_id)->firstOrFail();
+        $endereco->delete();
+
+        return redirect()->route('fornecedor.endereco.index', $id)->with('success', 'Endereço excluído com sucesso!');
     }
 }

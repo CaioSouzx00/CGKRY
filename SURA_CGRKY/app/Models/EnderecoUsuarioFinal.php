@@ -22,4 +22,5 @@ class EnderecoUsuarioFinal extends Model
     {
         return $this->belongsTo(UsuarioFinal::class, 'id_usuario');
     }
+    
 }

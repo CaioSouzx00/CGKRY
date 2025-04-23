@@ -30,11 +30,25 @@
             color: white;
             font-weight: bold;
         }
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border: 1px solid #c3e6cb;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Endereço para {{ $fornecedor->nome_empresa }}</h2>
+
+        @if(session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <form action="{{ route('fornecedor.endereco.store', $fornecedor->id) }}" method="POST">
             @csrf
