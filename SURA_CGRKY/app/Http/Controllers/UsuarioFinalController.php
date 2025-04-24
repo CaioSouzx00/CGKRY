@@ -36,6 +36,6 @@ class UsuarioFinalController extends Controller
         UsuarioFinal::create($dados);
 
         // Redireciona com uma mensagem de sucesso
-        return redirect()->route('usuario_final.create')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('login.form')->with('success', 'Cadastro realizado com sucesso! Faça login para continuar.');
     }
 }
