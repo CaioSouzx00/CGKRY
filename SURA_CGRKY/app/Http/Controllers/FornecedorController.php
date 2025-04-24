@@ -18,14 +18,14 @@ class FornecedorController extends Controller
 
     // Processar o cadastro do fornecedor
     public function store(Request $request)
-    {
-        $request->validate([
-            'nome_empresa' => 'required|string',
-            'cnpj' => 'required|string|unique:fornecedores,cnpj',
-            'telefone' => 'required|string',
-            'email' => 'required|email',
-            'senha' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'nome_empresa' => 'required|string|max:50',
+        'cnpj' => 'required|string|unique:fornecedores,cnpj|min:14',
+        'telefone' => 'required|string|max:15',
+        'email' => 'required|email|max:60',
+        'senha' => 'required|string|min:6',
+    ]);
 
         Fornecedor::create([
             'nome_empresa' => $request->nome_empresa,

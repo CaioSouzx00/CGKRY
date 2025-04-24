@@ -10,7 +10,7 @@ class UsuarioFinalController extends Controller
 {
     public function create()
     {
-        return view('usuario_final.create');
+        return view('usuario_final.create'); 
     }
 
     public function store(Request $request)
