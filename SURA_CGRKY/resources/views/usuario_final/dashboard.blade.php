@@ -87,6 +87,7 @@
     main {
       margin-top: 10vh;
     }
+
   </style>
 </head>
 <body>
@@ -102,6 +103,29 @@
   <div class="line line1"></div>
   <div class="line line2"></div>
   <div class="line line3"></div>
+
+<!-- Navbar com efeito vidro melhorado -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/50 border-b-2 border-purple-700/50 rounded-b-lg shadow-lg transition-all duration-300 ease-in-out">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center gap-6 md:gap-0">
+    
+    <!-- Título + Saudação (lado esquerdo) -->
+    <div class="flex flex-col text-left text-white mr-auto">
+      <h1 class="text-2xl font-bold tracking-wider drop-shadow-md text-purple-300">SURA</h1>
+      <p class="text-sm md:text-base text-white/80 mt-1">
+        Bem-vindo, <span class="font-semibold text-white">{{ $usuario->nome_completo ?? $usuario->nome_empresa }}</span>
+      </p>
+    </div>
+
+    <!-- Barra de navegação (links de menu) -->
+    <div class="hidden md:flex space-x-6 text-white/80 text-sm">
+      <a href="#" class="hover:text-purple-300 transition-colors">Home</a>
+      <a href="#" class="hover:text-purple-300 transition-colors">Serviços</a>
+      <a href="#" class="hover:text-purple-300 transition-colors">Conta</a>
+      <a href="#" class="hover:text-purple-300 transition-colors">Contato</a>
+    </div>
+  </div>
+</header>
+
 
   <!-- Main Content -->
   <main class="pt-24 px-6 flex flex-col items-center justify-center">
@@ -125,7 +149,7 @@
         </a>
 
         <!-- Botão de Cadastrar Endereço -->
-        <a href="{{ route('fornecedor.endereco.create', $usuario->id) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+        <a href="{{ route('fornecedor.endereco.create', $usuario->id) }}" class="relative inline-flex items-center justify-start px-2 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
           <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
           <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
             Cadastrar Endereço
@@ -145,7 +169,7 @@
         <!-- Botões lado a lado -->
         <div class="flex space-x-4 mt-4">
           <!-- Cadastrar -->
-          <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+          <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-1 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
             <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
             <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
               Cadastrar Endereço
@@ -153,14 +177,12 @@
           </a>
 
           <!-- Editar -->
-          @if ($usuario->enderecos->isNotEmpty())
             <a href="{{ route('endereco.index', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
               <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
               <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
                 Editar Endereço
               </span>
             </a>
-          @endif
         </div>
       </div>
     @endif

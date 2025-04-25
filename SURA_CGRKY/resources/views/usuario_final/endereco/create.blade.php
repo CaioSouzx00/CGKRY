@@ -78,6 +78,14 @@
   <div class="line line2"></div>
   <div class="line line3"></div>
 
+  <!-- Botão de Voltar (fixo no canto superior esquerdo, tamanho pequeno) -->
+  <a href="{{ route('dashboard') }}"
+   class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-700 hover:bg-purple-600 transition-colors duration-300 shadow-md">
+  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+  </svg>
+</a>
+
   <!-- Formulário -->
   <main class="flex flex-col items-center justify-center w-full h-full">
     <section class="bg-black bg-opacity-50 backdrop-blur-md p-8 rounded-3xl shadow-2xl w-full max-w-lg text-white border border-gray-800">
