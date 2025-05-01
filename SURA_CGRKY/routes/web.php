@@ -9,6 +9,7 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\EnderecoFornecedorController;
 use App\Http\Controllers\EnderecoUsuarioFinalController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 // Página inicial
 Route::get('/', function () {
@@ -125,3 +126,26 @@ Route::put('/usuario_final/{id}/endereco/{endereco_id}', [EnderecoUsuarioFinalCo
 
 // Deletar o endereço do usuário final
 Route::delete('/usuario_final/{id}/endereco/{endereco_id}', [EnderecoUsuarioFinalController::class, 'destroy'])->name('endereco.destroy');
+
+
+
+
+
+
+// Exibir o formulário para enviar o código (GET)
+Route::get('/esqueci-senha/enviar-codigo', [PasswordResetController::class, 'mostrarFormulario'])->name('password.enviarCodigo.form');
+
+// Enviar o código (POST)
+Route::post('/esqueci-senha/enviar-codigo', [PasswordResetController::class, 'enviarCodigo'])->name('password.enviarCodigo');
+
+// Exibir o formulário de verificação do código (GET)
+Route::get('/esqueci-senha/verificar-codigo', [PasswordResetController::class, 'mostrarFormularioVerificacao'])->name('password.verificarCodigoForm');
+
+// Verificar o código (POST)
+Route::post('/esqueci-senha/verificar-codigo', [PasswordResetController::class, 'verificarCodigo'])->name('password.verificarCodigo');
+
+// Exibir o formulário de redefinir senha (GET)
+Route::get('/esqueci-senha/redefinir', [PasswordResetController::class, 'mostrarFormularioRedefinir'])->name('password.redefinirSenhaForm');
+
+// Redefinir a senha (POST)
+Route::post('/esqueci-senha/redefinir', [PasswordResetController::class, 'redefinirSenha'])->name('password.redefinirSenha');

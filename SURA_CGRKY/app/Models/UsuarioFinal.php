@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UsuarioFinal extends Model
 {
-    protected $table = 'usuario_final'; // 👈 força o nome correto da tabela
+    use HasFactory; // 👈 ISSO QUE FALTOU
+
+    protected $table = 'usuario_final';
 
     protected $fillable = [
         'sexo',
@@ -18,11 +21,8 @@ class UsuarioFinal extends Model
         'cpf',
     ];
 
-    // Modelo UsuarioFinal
     public function enderecos()
-        {   
-            return $this->hasMany(EnderecoUsuarioFinal::class, 'id_usuario');
-        }
-
-
+    {   
+        return $this->hasMany(EnderecoUsuarioFinal::class, 'id_usuario');
+    }
 }

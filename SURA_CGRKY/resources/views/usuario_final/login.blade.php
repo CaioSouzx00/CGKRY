@@ -115,12 +115,18 @@
             <span class="relative">Entrar</span>
           </button>
       </form>
+
+      <!-- Link para a página de redefinir senha -->
+      <div class="mt-4">
+    <a href="{{ route('password.enviarCodigo.form') }}" class="text-indigo-600 hover:text-indigo-800">Esqueceu sua senha?</a>
+      </div>
     </section>
 
     <footer class="mt-12 text-sm text-gray-500 transition-all duration-700 ease-out hover:text-indigo-600">
       &copy; 2025 <strong>SURA</strong> - Sistema Unificado de Registro e Administração
     </footer>
-  </main>
+</main>
+
 
 </body>
 </html>
