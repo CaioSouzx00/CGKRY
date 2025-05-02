@@ -93,7 +93,8 @@
             </div>
         @endif
 
-      <form action="{{ route('usuario_final.store') }}" method="POST" class="space-y-4">
+        <form action="{{ route('usuario_final.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+
         @csrf
 
         <input type="text" name="nome_completo" placeholder="Seu nome completo..." value="{{ old('nome_completo') }}" required minlength="3" maxlength="255"
@@ -120,6 +121,9 @@
 
         <input type="text" name="cpf" placeholder="Apenas números do CPF..." value="{{ old('cpf') }}" required minlength="11" maxlength="11"
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
+
+          <input type="file" name="foto" accept="image/*"
+      class="w-full px-4 py-2 rounded-md border border-gray-700 bg-gray-800 text-white text-sm" />
 
         <button type="submit" class="relative inline-flex items-center justify-start inline-block px-5 py-3 overflow-hidden font-bold rounded-full group">
           <span class="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-white opacity-[3%]"></span>

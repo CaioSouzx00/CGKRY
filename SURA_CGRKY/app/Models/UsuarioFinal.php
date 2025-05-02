@@ -19,6 +19,7 @@ class UsuarioFinal extends Model
         'senha',
         'telefone',
         'cpf',
+        'foto',
     ];
 
     public function enderecos()

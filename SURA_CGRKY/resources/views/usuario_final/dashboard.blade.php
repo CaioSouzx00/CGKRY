@@ -6,7 +6,6 @@
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Estilos para o fundo animado e partículas */
     @keyframes moveBackground {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -87,7 +86,6 @@
     main {
       margin-top: 10vh;
     }
-
   </style>
 </head>
 <body>
@@ -104,30 +102,40 @@
   <div class="line line2"></div>
   <div class="line line3"></div>
 
-<!-- Navbar com efeito vidro melhorado -->
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/50 border-b-2 border-purple-700/50 rounded-b-lg shadow-lg transition-all duration-300 ease-in-out">
-  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center gap-6 md:gap-0">
-    
-    <!-- Título + Saudação (lado esquerdo) -->
-    <div class="flex flex-col text-left text-white mr-auto">
-      <h1 class="text-2xl font-bold tracking-wider drop-shadow-md text-purple-300">SURA</h1>
-      <p class="text-sm md:text-base text-white/80 mt-1">
-        Bem-vindo, <span class="font-semibold text-white">{{ $usuario->nome_completo ?? $usuario->nome_empresa }}</span>
-      </p>
+  <!-- Foto de perfil no topo -->
+  @php
+      $nome = $usuario->nome_completo ?? $usuario->nome_empresa;
+      $foto = $usuario->foto && file_exists(public_path('storage/' . $usuario->foto))
+          ? asset('storage/' . $usuario->foto)
+          : 'https://ui-avatars.com/api/?name=' . urlencode($nome) . '&background=7f5af0&color=fff';
+  @endphp
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/50 border-b-2 border-purple-700/50 rounded-b-lg shadow-lg transition-all duration-300 ease-in-out">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center gap-6 md:gap-0">
+      
+      <!-- Nome + Foto -->
+      <div class="flex items-center gap-4 text-white">
+        <img src="{{ $foto }}" alt="Foto de perfil" class="w-10 h-10 rounded-full border-2 border-purple-500 shadow-md object-cover">
+        <div>
+          <h1 class="text-2xl font-bold tracking-wider drop-shadow-md text-purple-300">SURA</h1>
+          <p class="text-sm md:text-base text-white/80 mt-1">
+            Bem-vindo, <span class="font-semibold text-white">{{ $nome }}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Menu -->
+      <div class="hidden md:flex space-x-6 text-white/80 text-sm ml-auto">
+        <a href="#" class="hover:text-purple-300 transition-colors">Home</a>
+        <a href="#" class="hover:text-purple-300 transition-colors">Serviços</a>
+        <a href="#" class="hover:text-purple-300 transition-colors">Conta</a>
+        <a href="#" class="hover:text-purple-300 transition-colors">Contato</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Barra de navegação (links de menu) -->
-    <div class="hidden md:flex space-x-6 text-white/80 text-sm">
-      <a href="#" class="hover:text-purple-300 transition-colors">Home</a>
-      <a href="#" class="hover:text-purple-300 transition-colors">Serviços</a>
-      <a href="#" class="hover:text-purple-300 transition-colors">Conta</a>
-      <a href="#" class="hover:text-purple-300 transition-colors">Contato</a>
-    </div>
-  </div>
-</header>
-
-
-  <!-- Main Content -->
+  <!-- Conteúdo -->
   <main class="pt-24 px-6 flex flex-col items-center justify-center">
 
     @if ($isFornecedor)
@@ -140,19 +148,17 @@
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
         <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
 
-        <!-- Botão de Listar Endereços -->
-        <a href="{{ route('fornecedor.endereco.index', $usuario->id) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-          <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-          <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-            Listar Endereços
-          </span>
-        </a>
-
-        <!-- Botão de Cadastrar Endereço -->
         <a href="{{ route('fornecedor.endereco.create', $usuario->id) }}" class="relative inline-flex items-center justify-start px-2 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
           <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
           <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
             Cadastrar Endereço
+          </span>
+        </a>
+
+        <a href="{{ route('fornecedor.endereco.index', $usuario->id) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+          <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+          <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+            Listar Endereços
           </span>
         </a>
       </div>
@@ -166,9 +172,7 @@
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
         <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
 
-        <!-- Botões lado a lado -->
         <div class="flex space-x-4 mt-4">
-          <!-- Cadastrar -->
           <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-1 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
             <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
             <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
@@ -176,13 +180,12 @@
             </span>
           </a>
 
-          <!-- Editar -->
-            <a href="{{ route('endereco.index', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-              <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-              <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-                Editar Endereço
-              </span>
-            </a>
+          <a href="{{ route('endereco.index', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+            <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+            <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+              Editar Endereço
+            </span>
+          </a>
         </div>
       </div>
     @endif

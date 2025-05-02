@@ -36,7 +36,7 @@ class PasswordResetController extends Controller
         // Enviar o e-mail com o código
         Mail::raw("Seu código de recuperação de senha é: {$token}", function ($message) use ($request) {
             $message->to($request->email)
-                    ->from('caionk03@gmail.com', 'Sua Aplicação') // Use um remetente validado!
+                    ->from('caionk03@gmail.com', 'CGKRY') // Use um remetente validado!
                     ->subject('Código de Recuperação de Senha');
         });
 
