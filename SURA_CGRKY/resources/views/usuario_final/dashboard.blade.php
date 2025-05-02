@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     @keyframes moveBackground {
       0% { background-position: 0% 50%; }
@@ -110,30 +111,46 @@
           : 'https://ui-avatars.com/api/?name=' . urlencode($nome) . '&background=7f5af0&color=fff';
   @endphp
 
-  <!-- Navbar -->
-  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/50 border-b-2 border-purple-700/50 rounded-b-lg shadow-lg transition-all duration-300 ease-in-out">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center gap-6 md:gap-0">
-      
-      <!-- Nome + Foto -->
-      <div class="flex items-center gap-4 text-white">
-        <img src="{{ $foto }}" alt="Foto de perfil" class="w-10 h-10 rounded-full border-2 border-purple-500 shadow-md object-cover">
-        <div>
-          <h1 class="text-2xl font-bold tracking-wider drop-shadow-md text-purple-300">SURA</h1>
-          <p class="text-sm md:text-base text-white/80 mt-1">
-            Bem-vindo, <span class="font-semibold text-white">{{ $nome }}</span>
-          </p>
+<!-- Navbar -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/60 border-b border-indigo-700/30 shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- Nome + Foto -->
+    <div class="flex items-center gap-4 text-white font-[Poppins]">
+      <img src="{{ $foto }}" alt="Foto de perfil" class="w-11 h-11 rounded-full border-2 border-purple-500 shadow-md object-cover">
+      <div>
+        <h1 class="text-2xl font-bold text-indigo-400 tracking-wide font-[Orbitron]">Hydrax</h1>
+        <p class="text-sm text-white/80">Bem-vindo, <span class="font-semibold text-white">{{ $nome }}</span></p>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <nav class="hidden md:flex items-center space-x-8 text-white/80 text-sm font-[Poppins] ml-auto">
+      <a href="#" class="hover:text-purple-400 transition">Início</a>
+      <a href="#" class="hover:text-purple-400 transition">Lançamentos</a>
+      <a href="#" class="hover:text-purple-400 transition">Ofertas</a>
+      <a href="#" class="hover:text-purple-400 transition">Contato</a>
+
+      <!-- Conta Dropdown -->
+      <div class="relative group">
+        <button class="hover:text-purple-400 transition focus:outline-none">Conta ▾</button>
+        <div class="absolute hidden group-hover:block bg-gray-900 border border-purple-600 rounded-md shadow-lg mt-2 py-2 min-w-[160px]">
+          <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Perfil</a>
+          <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Meus pedidos</a>
+          <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Sair</a>
         </div>
       </div>
 
-      <!-- Menu -->
-      <div class="hidden md:flex space-x-6 text-white/80 text-sm ml-auto">
-        <a href="#" class="hover:text-purple-300 transition-colors">Home</a>
-        <a href="#" class="hover:text-purple-300 transition-colors">Serviços</a>
-        <a href="#" class="hover:text-purple-300 transition-colors">Conta</a>
-        <a href="#" class="hover:text-purple-300 transition-colors">Contato</a>
-      </div>
-    </div>
-  </header>
+      <!-- Carrinho -->
+      <a href="#" class="relative hover:text-purple-400 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7h13L17 13M7 13H5.4" />
+        </svg>
+        Carrinho
+      </a>
+    </nav>
+  </div>
+</header>
 
   <!-- Conteúdo -->
   <main class="pt-24 px-6 flex flex-col items-center justify-center">
