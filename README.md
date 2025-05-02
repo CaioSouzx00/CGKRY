@@ -1,4 +1,4 @@
-🏃‍♂️ SURA – Sua nova loja de tênis esportivos
+🏃‍♂️ Hydrax – Sua nova loja de tênis esportivos
 Bem-vindo à SURA, o seu novo destino para encontrar tênis esportivos estilosos, confortáveis e de alta performance! Aqui, você navega fácil, compra rápido e recebe direto na sua porta.
 
 🌟 O que você encontra por aqui?
