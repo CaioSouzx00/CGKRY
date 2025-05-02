@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SURA - Login</title>
+  <title>Hydrax - Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -70,7 +70,7 @@
 
   <!-- Botão voltar -->
   <a href="http://127.0.0.1:8080"
-     class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-700 hover:bg-purple-600 transition-colors duration-300 shadow-md"
+     class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-700 hover:bg-purple-600 transition-colors duration-300 shadow-[0_4px_20px_rgba(30,64,175,0.4)]"
      title="Voltar para o painel">
     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -79,14 +79,14 @@
 
   <!-- Container Principal -->
   <div class="flex items-center justify-center w-full h-full">
-    <main class="flex w-full max-w-7xl h-[90%] bg-black/30 rounded-md border border-gray-800 p-8 relative backdrop-blur-md">
+    <main class="flex w-full max-w-7xl h-[90%] bg-black/30 rounded-md border border-gray-800 p-8 relative backdrop-blur-md shadow-[0_4px_20px_rgba(30,64,175,0.4)]">
 
       <!-- Imagem -->
-      <div class="w-1/2 flex items-center justify-center rounded-md bg-cover bg-center" style="background-image: url('/imagens/Post Jif 2025_20250502_132319_0000.png');"></div>
+      <div class="w-1/2 flex items-center justify-center rounded-md bg-cover bg-center shadow-[0_4px_20px_rgba(30,58,138,0.3)]" style="background-image: url('/imagens/Post Jif 2025_20250502_132319_0000.png');"></div>
 
       <!-- Área de Login -->
-      <div class="w-1/2 flex items-center justify-center p-8">
-        <section class="p-8 rounded-3xl w-full max-w-sm text-left">
+      <div class="w-1/2 bg-black/10 rounded-md flex items-center justify-center p-8 shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
+        <section class="p-8 rounded-3xl w-full max-w-sm text-left ">
 
           <div class="text-center max-w-md mx-auto space-y-3">
             <h2 class="text-base text-gray-300">Seja bem-vindo à</h2>
@@ -115,19 +115,19 @@
             <div class="flex items-center space-x-3 mb-4">
               <img src="/imagens/Post Jif 2025/4.png" alt="email" class="w-6 h-6 text-indigo-500">
               <input type="email" name="email" required placeholder="E-mail"
-                     class="h-10 px-4 rounded-md border border-indigo-500 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full">
+                     class="h-10 px-4 rounded-md border border-indigo-500 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
             </div>
 
             <div class="flex items-center space-x-3 mb-4">
               <img src="/imagens/Post Jif 2025/5.png" alt="senha" class="w-6 h-6 text-indigo-500">
               <input type="password" name="senha" required placeholder="Senha"
-                     class="h-10 px-4 rounded-md border border-indigo-400 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full">
+                     class="h-10 px-4 rounded-md border border-indigo-400 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
             </div>
 
             <div class="mt-4 flex justify-between items-center">
               <a href="{{ route('password.enviarCodigo.form') }}" class="text-indigo-600 hover:text-indigo-800">Esqueceu sua senha?</a>
               <button type="submit"
-                      class="relative inline-flex items-center justify-center w-20px px-3 py-2 overflow-hidden text-sm font-medium text-indigo-600 border-2 border-indigo-600 rounded-xl hover:text-white group bg-transparent ml-4">
+                      class="relative inline-flex items-center justify-center w-20px px-3 py-2 overflow-hidden text-sm font-medium text-indigo-600 border-2 border-indigo-600 rounded-xl hover:text-white group bg-transparent ml-4 shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
                 <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
                 <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease"></span>
                 <span class="relative">Entrar</span>
