@@ -117,12 +117,32 @@
               <input type="email" name="email" required placeholder="E-mail"
                      class="h-10 px-4 rounded-md border border-indigo-500 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
             </div>
+            <div class="flex items-center space-x-3 mb-4 relative">
+  <img src="/imagens/Post Jif 2025/5.png" alt="senha" class="w-6 h-6 text-indigo-500">
+  
+  <input 
+    type="password" 
+    name="senha" 
+    id="senha" 
+    required 
+    placeholder="Senha"
+    class="h-10 px-4 pr-10 rounded-md border border-indigo-400 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]"
+  >
 
-            <div class="flex items-center space-x-3 mb-4">
-              <img src="/imagens/Post Jif 2025/5.png" alt="senha" class="w-6 h-6 text-indigo-500">
-              <input type="password" name="senha" required placeholder="Senha"
-                     class="h-10 px-4 rounded-md border border-indigo-400 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
-            </div>
+  <!-- Botão para alternar visualização da senha -->
+  <button 
+    type="button" 
+    onclick="toggleSenha()" 
+    class="absolute right-3 top-2 w-6 h-6"
+  >
+    <img 
+      src="/imagens/Post Jif 2025.png" 
+      alt="Mostrar senha" 
+      id="eye-icon" 
+      class="w-6 h-6 opacity-30"
+    >
+  </button>
+</div>
 
             <div class="mt-4 flex justify-between items-center">
               <a href="{{ route('password.enviarCodigo.form') }}" class="text-indigo-600 hover:text-indigo-800">Esqueceu sua senha?</a>
@@ -149,5 +169,21 @@
       </div>
     </main>
   </div>
+  <script>
+  function toggleSenha() {
+    const input = document.getElementById("senha");
+    const icon = document.getElementById("eye-icon");
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.src = "/imagens/Post Jif 2025 (2).png"; // imagem com olho aberto
+      icon.alt = "Ocultar senha";
+    } else {
+      input.type = "password";
+      icon.src = "/imagens/Post Jif 2025.png"; // imagem com olho fechado
+      icon.alt = "Mostrar senha";
+    }
+  }
+</script>
 </body>
 </html>
