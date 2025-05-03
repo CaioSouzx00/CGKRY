@@ -82,26 +82,26 @@
     <main class="flex w-full max-w-7xl h-[90%] bg-black/30 rounded-md border border-gray-800 p-8 relative backdrop-blur-md shadow-[0_4px_20px_rgba(30,64,175,0.4)]">
 
       <!-- Imagem -->
-      <div class="w-1/2 flex items-center justify-center rounded-md bg-cover bg-center shadow-[0_4px_20px_rgba(30,58,138,0.3)]" style="background-image: url('/imagens/Post Jif 2025_20250502_132319_0000.png');"></div>
+      <div class="w-1/2 flex items-center justify-center rounded-md bg-cover bg-center shadow-[0_4px_20px_rgba(30,58,138,0.3)]" style="background-image: url('/imagens/Post Jif 2025 (4).png');"></div>
 
       <!-- Área de Login -->
-      <div class="w-1/2 bg-black/10 rounded-md flex items-center justify-center p-8 shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
-        <section class="p-8 rounded-3xl w-full max-w-sm text-left ">
+      <div class="w-1/2 bg-black/20 rounded-md flex items-center justify-center p-8 shadow-[0_4px_30px_rgba(30,58,138,0.4)]">
+        <section class="p-8 rounded-3xl w-full max-w-sm text-left">
 
           <div class="text-center max-w-md mx-auto space-y-3">
-            <h2 class="text-base text-gray-300">Seja bem-vindo à</h2>
-            <h1 class="text-4xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-600 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
+            <h2 class="text-sm text-indigo-300">Seja bem-vindo à</h2>
+            <h1 class="text-4xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
               Hydrax
             </h1>
-            <h3 class="text-base text-gray-400">
-              Acompanhe lançamentos em tempo real e descubra os tênis esportivos mais desejados do mercado. Faça login e eleve seu estilo ao próximo nível.
+            <h3 class="text-sm text-gray-300">
+              Acompanhe lançamentos em tempo real e descubra os tênis esportivos mais desejados do mercado.
             </h3>
           </div>
 
           <div class="h-5"></div>
 
           @if ($errors->any())
-            <div class="bg-red-500 text-white p-4 mb-6 rounded">
+            <div class="text-center bg-red-500/50 text-white p-4 mb-6 rounded border-2 border-red-500">
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -110,58 +110,39 @@
             </div>
           @endif
 
-          <form method="POST" action="{{ route('login') }}" class="space-y-3">
+          <form method="POST" action="{{ route('login') }}" class="space-y-4 mt-6">
             @csrf
-            <div class="flex items-center space-x-3 mb-4">
-              <img src="/imagens/Post Jif 2025/4.png" alt="email" class="w-6 h-6 text-indigo-500">
+            <div class="flex items-center space-x-3">
+              <img src="/imagens/Post Jif 2025/4.png" alt="Ícone de e-mail" class="w-5 h-5">
               <input type="email" name="email" required placeholder="E-mail"
-                     class="h-10 px-4 rounded-md border border-indigo-500 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
+                     class="h-11 px-4 rounded-md border border-indigo-500 bg-gray-800/60 text-white placeholder-gray-300 text-sm w-full focus:outline-none focus:ring-2 focus:ring-indigo-400">
             </div>
-            <div class="flex items-center space-x-3 mb-4 relative">
-  <img src="/imagens/Post Jif 2025/5.png" alt="senha" class="w-6 h-6 text-indigo-500">
-  
-  <input 
-    type="password" 
-    name="senha" 
-    id="senha" 
-    required 
-    placeholder="Senha"
-    class="h-10 px-4 pr-10 rounded-md border border-indigo-400 bg-gray-800/50 text-white placeholder-gray-400 text-sm w-full shadow-[0_4px_20px_rgba(30,58,138,0.3)]"
-  >
 
-  <!-- Botão para alternar visualização da senha -->
-  <button 
-    type="button" 
-    onclick="toggleSenha()" 
-    class="absolute right-3 top-2 w-6 h-6"
-  >
-    <img 
-      src="/imagens/Post Jif 2025.png" 
-      alt="Mostrar senha" 
-      id="eye-icon" 
-      class="w-6 h-6 opacity-30"
-    >
-  </button>
-</div>
+            <div class="flex items-center space-x-3 relative">
+              <img src="/imagens/Post Jif 2025/5.png" alt="Ícone de senha" class="w-5 h-5">
+              <input type="password" name="senha" id="senha" required placeholder="Senha"
+                     class="h-11 px-4 pr-10 rounded-md border border-indigo-400 bg-gray-800/60 text-white placeholder-gray-300 text-sm w-full focus:outline-none focus:ring-2 focus:ring-purple-400">
+              <button type="button" onclick="toggleSenha()" class="absolute right-3 top-2 w-6 h-6">
+                <img src="/imagens/Post Jif 2025.png" alt="Mostrar senha" id="eye-icon" class="w-6 h-6 opacity-40 hover:opacity-80 transition-opacity">
+              </button>
+            </div>
 
-            <div class="mt-4 flex justify-between items-center">
-              <a href="{{ route('password.enviarCodigo.form') }}" class="text-indigo-600 hover:text-indigo-800">Esqueceu sua senha?</a>
+            <div class="flex justify-between items-center text-sm">
+              <a href="{{ route('password.enviarCodigo.form') }}" class="text-indigo-400 hover:text-indigo-600 transition">Esqueceu sua senha?</a>
               <button type="submit"
-                      class="relative inline-flex items-center justify-center w-20px px-3 py-2 overflow-hidden text-sm font-medium text-indigo-600 border-2 border-indigo-600 rounded-xl hover:text-white group bg-transparent ml-4 shadow-[0_4px_20px_rgba(30,58,138,0.3)]">
-                <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
-                <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease"></span>
-                <span class="relative">Entrar</span>
+                      class="relative px-5 py-2 border-2 border-indigo-500 text-indigo-400 rounded-xl hover:text-white hover:bg-indigo-600 transition-all duration-300">
+                Entrar
               </button>
             </div>
           </form>
 
-          <div class="mt-4">
+          <div class="mt-4 text-sm text-center">
             <p>Não possui conta?
-              <a href="{{ route('usuario_final.create') }}" class="text-indigo-600 hover:text-indigo-800"> Cadastrar</a>
+              <a href="{{ route('usuario_final.create') }}" class="text-indigo-400 hover:text-indigo-600 transition">Cadastrar</a>
             </p>
           </div>
 
-          <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
+          <footer class="mt-16 text-center text-xs text-white/60 hover:text-indigo-300 transition duration-300">
             &copy; 2025 <strong>Hydrax</strong> - Todos os direitos reservados
           </footer>
 
@@ -169,21 +150,22 @@
       </div>
     </main>
   </div>
-  <script>
-  function toggleSenha() {
-    const input = document.getElementById("senha");
-    const icon = document.getElementById("eye-icon");
 
-    if (input.type === "password") {
-      input.type = "text";
-      icon.src = "/imagens/Post Jif 2025 (2).png"; // imagem com olho aberto
-      icon.alt = "Ocultar senha";
-    } else {
-      input.type = "password";
-      icon.src = "/imagens/Post Jif 2025.png"; // imagem com olho fechado
-      icon.alt = "Mostrar senha";
+  <script>
+    function toggleSenha() {
+      const input = document.getElementById("senha");
+      const icon = document.getElementById("eye-icon");
+
+      if (input.type === "password") {
+        input.type = "text";
+        icon.src = "/imagens/Post Jif 2025 (2).png";
+        icon.alt = "Ocultar senha";
+      } else {
+        input.type = "password";
+        icon.src = "/imagens/Post Jif 2025.png";
+        icon.alt = "Mostrar senha";
+      }
     }
-  }
-</script>
+  </script>
 </body>
 </html>
