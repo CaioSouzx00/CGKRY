@@ -21,6 +21,13 @@ class EnderecoUsuarioFinalController extends Controller
     // Processa o formulário de cadastro de endereço
     public function store(Request $request, $id)
     {
+        // Verifica quantos endereços o usuário já possui
+        $quantidadeEnderecos = EnderecoUsuarioFinal::where('id_usuario', $id)->count();
+    
+        if ($quantidadeEnderecos >= 3) {
+            return redirect()->back()->withErrors(['limite' => 'Você já cadastrou o número máximo de 3 endereços.']);
+        }
+    
         // Validação dos dados do formulário
         $validated = $request->validate([
             'cidade' => 'required|string|max:60',
@@ -30,15 +37,15 @@ class EnderecoUsuarioFinalController extends Controller
             'rua' => 'required|string|max:60',
             'numero' => 'required|string|max:10',
         ]);
-
+    
         // Criação do novo endereço associado ao usuário
         $endereco = new EnderecoUsuarioFinal($validated);
-        $endereco->id_usuario = $id; // Associa o endereço ao usuário com ID
-        $endereco->save(); // Salva o endereço no banco
-
-        // Redireciona para a página anterior com uma mensagem de sucesso
+        $endereco->id_usuario = $id;
+        $endereco->save();
+    
         return redirect()->back()->with('success', 'Endereço salvo com sucesso!');
     }
+    
 
     // Exibe o formulário de edição
     public function edit($id, $endereco_id)
@@ -58,7 +65,7 @@ class EnderecoUsuarioFinalController extends Controller
     
         $request->validate([
             'cidade' => 'required|string|max:100',
-            'cep' => 'required|string|max:10',
+            'cep' => 'required|string|min:8',
             'bairro' => 'required|string|max:100',
             'estado' => 'required|string|max:50',
             'rua' => 'required|string|max:150',

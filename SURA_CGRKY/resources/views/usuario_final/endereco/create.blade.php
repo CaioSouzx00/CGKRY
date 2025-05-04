@@ -78,13 +78,13 @@
   <div class="line line2"></div>
   <div class="line line3"></div>
 
-  <!-- Botão de Voltar (fixo no canto superior esquerdo, tamanho pequeno) -->
+  <!-- Botão de Voltar -->
   <a href="{{ route('dashboard') }}"
-   class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-700 hover:bg-purple-600 transition-colors duration-300 shadow-md">
-  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-  </svg>
-</a>
+    class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-700 hover:bg-purple-600 transition-colors duration-300 shadow-md">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </a>
 
   <!-- Formulário -->
   <main class="flex flex-col items-center justify-center w-full h-full">
@@ -93,22 +93,29 @@
         Cadastro de Endereço
       </h1>
 
-      <!-- Mensagem de sucesso -->
-    @if (session('success'))
-        <div class="bg-green-600 text-white p-4 mb-6 rounded shadow-md text-center font-semibold">
-            {{ session('success') }}
-        </div>
-    @endif
-    <!-- Mensagem de erro -->
-      @if ($errors->any())
-            <div class="bg-red-500 text-white p-4 mb-6 rounded">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+      <!-- MENSAGENS -->
+      @if (session('success'))
+          <div class="bg-green-600 text-white p-4 mb-6 rounded shadow-md text-center font-semibold">
+              {{ session('success') }}
+          </div>
+      @endif
+
+      @if ($errors->has('limite'))
+          <div class="bg-yellow-500 text-white p-4 mb-6 rounded shadow-md text-center font-semibold">
+              ⚠️ {{ $errors->first('limite') }}
+          </div>
+      @endif
+
+      @if ($errors->any() && !$errors->has('limite'))
+          <div class="bg-red-600 text-white p-4 mb-6 rounded shadow-md">
+              <ul class="list-disc list-inside">
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+
       <form action="{{ route('endereco.store', $usuario->id) }}" method="POST" class="space-y-4">
         @csrf
         <input type="hidden" name="id_usuario" value="{{ $usuario->id }}">
@@ -116,19 +123,19 @@
         <input type="text" name="cidade" placeholder="Cidade..." required
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
 
-        <input type="text" name="cep" placeholder="CEP..." required
+        <input type="text" name="cep" placeholder="CEP..." required maxlength="8" minlength="8"
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
 
-        <input type="text" name="bairro" placeholder="Bairro..." required
+        <input type="text" name="bairro" placeholder="Bairro..." required maxlength="50" minlength="2"
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
 
-        <input type="text" name="estado" placeholder="Estado (UF)" maxlength="2" required
+        <input type="text" name="estado" placeholder="Estado (UF)" maxlength="2" required maxlength="2" minlength="2"
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
 
-        <input type="text" name="rua" placeholder="Rua..." required
+        <input type="text" name="rua" placeholder="Rua..." required maxlength="50" minlength="2"
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
 
-        <input type="text" name="numero" placeholder="Número..." required
+        <input type="text" name="numero" placeholder="Número..." required maxlength="12" minlength="1"
           class="w-full h-10 px-4 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-400 text-sm">
 
         <button type="submit"

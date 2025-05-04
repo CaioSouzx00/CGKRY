@@ -126,3 +126,9 @@ Route::prefix('admin/fornecedores')->group(function () {
 });
 
 Route::get('/admin/fornecedores/esqueci-senha', [FornecedorPasswordResetController::class, 'mostrarFormulario'])->name('fornecedor.password.esqueciSenhaForm');
+
+
+Route::get('/usuario_final/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('endereco.index');
+
+// Excluir endereço do usuário final
+Route::delete('/usuario_final/{id}/endereco/{endereco_id}', [EnderecoUsuarioFinalController::class, 'destroy'])->name('endereco.destroy');

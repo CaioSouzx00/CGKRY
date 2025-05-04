@@ -24,25 +24,30 @@ class EnderecoFornecedorController extends Controller
 
     public function store(Request $request, $id)
     {
-        $request->validate([
-            'cidade' => 'required|string',
-            'estado' => 'required|string',
-            'bairro' => 'required|string',
-            'rua' => 'required|string',
-            'cep' => 'required|string',
+        // Verifica quantos endereços o fornecedor já possui
+        $quantidadeEnderecos = EnderecoFornecedor::where('fornecedor_id', $id)->count();
+        
+        if ($quantidadeEnderecos >= 3) {
+            return redirect()->back()->withErrors(['limite' => 'Este fornecedor já cadastrou o número máximo de 3 endereços.']);
+        }
+        
+        // Validação dos dados do formulário
+        $validated = $request->validate([
+            'cidade' => 'required|string|max:60',
+            'cep' => 'required|string|max:8',
+            'bairro' => 'required|string|max:60',
+            'estado' => 'required|string|max:2',
+            'rua' => 'required|string|max:60',
         ]);
-
-        EnderecoFornecedor::create([
-            'fornecedor_id' => $id,
-            'cidade' => $request->cidade,
-            'estado' => $request->estado,
-            'bairro' => $request->bairro,
-            'rua' => $request->rua,
-            'cep' => $request->cep,
-        ]);
-
+        
+        // Criação do novo endereço associado ao fornecedor
+        $endereco = new EnderecoFornecedor($validated);
+        $endereco->fornecedor_id = $id;
+        $endereco->save();
+        
         return redirect()->route('fornecedor.endereco.index', $id)->with('success', 'Endereço cadastrado com sucesso!');
     }
+    
 
     public function edit($id, $endereco_id)
     {

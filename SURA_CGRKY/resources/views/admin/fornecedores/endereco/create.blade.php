@@ -60,7 +60,7 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
-
+ 
         .line1 { width: 30vw; top: 20%; left: 5%; animation-duration: 12s; }
         .line2 { width: 40vw; top: 50%; left: 10%; animation-duration: 15s; }
         .line3 { width: 50vw; top: 70%; left: 15%; animation-duration: 18s; }
@@ -91,11 +91,28 @@
                 Endereço para {{ $fornecedor->nome_empresa }}
             </h1>
 
-            @if(session('success'))
-                <div class="bg-green-600 text-white p-4 mb-6 rounded text-center">
-                    {{ session('success') }}
-                </div>
-            @endif
+            <!-- MENSAGENS -->
+      @if (session('success'))
+          <div class="bg-green-600 text-white p-4 mb-6 rounded shadow-md text-center font-semibold">
+              {{ session('success') }}
+          </div>
+      @endif
+
+      @if ($errors->has('limite'))
+          <div class="bg-yellow-500 text-white p-4 mb-6 rounded shadow-md text-center font-semibold">
+              ⚠️ {{ $errors->first('limite') }}
+          </div>
+      @endif
+
+      @if ($errors->any() && !$errors->has('limite'))
+          <div class="bg-red-600 text-white p-4 mb-6 rounded shadow-md">
+              <ul class="list-disc list-inside">
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
 
             <form action="{{ route('fornecedor.endereco.store', $fornecedor->id) }}" method="POST" class="space-y-4">
                 @csrf
