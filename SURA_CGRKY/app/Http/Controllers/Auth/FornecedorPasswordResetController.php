@@ -91,7 +91,7 @@ class FornecedorPasswordResetController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:fornecedores,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:6|confirmed',
             'token' => 'required',
         ]);
 
@@ -111,6 +111,6 @@ class FornecedorPasswordResetController extends Controller
 
         DB::table('password_resets')->where('email', $request->email)->delete();
 
-        return redirect()->route('login')->with('success', 'Senha redefinida com sucesso.');
+        return redirect()->route('fornecedor.login')->with('success', 'Senha redefinida com sucesso.');
     }
 }
