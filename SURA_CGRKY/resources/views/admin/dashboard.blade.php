@@ -97,33 +97,19 @@
   </header>
 
   <main class="pt-40 px-6 flex flex-col items-center justify-center">
-  <section class="bg-black bg-opacity-50 backdrop-blur-md p-10 rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.3)] w-full max-w-md text-center border border-purple-600/30 relative overflow-hidden">
+    <section class="bg-black bg-opacity-50 backdrop-blur-md p-10 rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.3)] w-full max-w-md text-center border border-purple-600/30 relative overflow-hidden">
 
-    <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-6">
-      Funções ADM
-    </h2>
+      <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-6">
+        Funções ADM
+      </h2>
 
-    <p class="text-white/70 mb-8">Gerencie os cadastros de fornecedores e realize o logout da sua sessão. Utilize as opções abaixo:</p>
-
-    <div class="flex flex-col gap-4">
-      <!-- Botão Cadastro de Fornecedor -->
-      <a href="{{ route('fornecedores.create') }}"
-         class="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 text-indigo-600 text-white transition duration-300">
-        <span class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
-        <span class="relative text-indigo-600 transition duration-300 group-hover:text-white ease">
-          📦 Cadastro de Fornecedor
-        </span>
+      <!-- Botão para listar todos os fornecedores -->
+      <a href="{{ route('admin.fornecedores') }}" class="mt-6 inline-block bg-purple-600 px-6 py-3 rounded-lg text-white font-bold text-lg hover:bg-purple-700 transition-all duration-300">
+        Ver Todos os Fornecedores
       </a>
 
-      <!-- Botão Sair -->
-      <a href="{{ route('admin.logout') }}"
-         class="px-4 py-2.5 relative rounded group overflow-hidden font-medium bg-purple-50 text-purple-600 inline-block transition duration-300">
-        <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
-        <span class="relative group-hover:text-white">Sair</span>
-      </a>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
 
   <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">

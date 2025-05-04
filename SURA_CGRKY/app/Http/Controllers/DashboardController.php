@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
@@ -9,14 +10,19 @@ class DashboardController extends Controller
     public function index()
     {
         $usuario = Session::get('usuario');
-
+    
+        // Verifique se o usuário está logado
         if (!$usuario) {
             return redirect()->route('login.form');
         }
-
-        $isFornecedor = property_exists($usuario, 'cnpj') && !empty($usuario->cnpj);
-        $endereco = method_exists($usuario, 'enderecos') ? $usuario->enderecos()->first() : null;
-
-        return view('usuario_final.dashboard', compact('usuario', 'isFornecedor', 'endereco'));
+    
+        // Verifique se o usuário é admin
+        if ($usuario->is_admin) {
+            return view('admin.dashboard'); // Redireciona para o dashboard do admin
+        }
+    
+        // Caso o usuário não seja admin, redireciona para o dashboard do usuário normal
+        return view('usuario_final.dashboard'); // Ou qualquer outra view do usuário normal
     }
+    
 }

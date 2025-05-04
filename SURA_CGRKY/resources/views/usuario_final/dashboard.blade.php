@@ -111,50 +111,48 @@
           : 'https://ui-avatars.com/api/?name=' . urlencode($nome) . '&background=7f5af0&color=fff';
   @endphp
 
-<!-- Navbar -->
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/60 border-b border-indigo-700/30 shadow-md">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-    <!-- Nome + Foto -->
-    <div class="flex items-center gap-4 text-white font-[Poppins]">
-      <img src="{{ $foto }}" alt="Foto de perfil" class="w-11 h-11 rounded-full border-2 border-purple-500 shadow-md object-cover">
-      <div>
-        <h1 class="text-2xl font-bold text-indigo-400 tracking-wide font-[Orbitron]">Hydrax</h1>
-        <p class="text-sm text-white/80">Bem-vindo, <span class="font-semibold text-white">{{ $nome }}</span></p>
-      </div>
-    </div>
-
-    <!-- Menu -->
-    <nav class="hidden md:flex items-center space-x-8 text-white/80 text-sm font-[Poppins] ml-auto">
-      <a href="#" class="hover:text-purple-400 transition">Início</a>
-      <a href="#" class="hover:text-purple-400 transition">Lançamentos</a>
-      <a href="#" class="hover:text-purple-400 transition">Ofertas</a>
-      <a href="#" class="hover:text-purple-400 transition">Contato</a>
-
-      <!-- Conta Dropdown -->
-      <div class="relative group">
-        <button class="hover:text-purple-400 transition focus:outline-none">Conta ▾</button>
-        <div class="absolute hidden group-hover:block bg-gray-900 border border-purple-600 rounded-md shadow-lg mt-2 py-2 min-w-[160px]">
-          <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Perfil</a>
-          <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Meus pedidos</a>
-          <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Sair</a>
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/60 border-b border-indigo-700/30 shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Nome + Foto -->
+      <div class="flex items-center gap-4 text-white font-[Poppins]">
+        <img src="{{ $foto }}" alt="Foto de perfil" class="w-11 h-11 rounded-full border-2 border-purple-500 shadow-md object-cover">
+        <div>
+          <h1 class="text-2xl font-bold text-indigo-400 tracking-wide font-[Orbitron]">Hydrax</h1>
+          <p class="text-sm text-white/80">Bem-vindo, <span class="font-semibold text-white">{{ $nome }}</span></p>
         </div>
       </div>
 
-      <!-- Carrinho -->
-      <a href="#" class="relative hover:text-purple-400 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7h13L17 13M7 13H5.4" />
-        </svg>
-        Carrinho
-      </a>
-    </nav>
-  </div>
-</header>
+      <!-- Menu -->
+      <nav class="hidden md:flex items-center space-x-8 text-white/80 text-sm font-[Poppins] ml-auto">
+        <a href="#" class="hover:text-purple-400 transition">Início</a>
+        <a href="#" class="hover:text-purple-400 transition">Lançamentos</a>
+        <a href="#" class="hover:text-purple-400 transition">Ofertas</a>
+        <a href="#" class="hover:text-purple-400 transition">Contato</a>
+
+        <!-- Conta Dropdown -->
+        <div class="relative group">
+          <button class="hover:text-purple-400 transition focus:outline-none">Conta ▾</button>
+          <div class="absolute hidden group-hover:block bg-gray-900 border border-purple-600 rounded-md shadow-lg mt-2 py-2 min-w-[160px]">
+            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Perfil</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Meus pedidos</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-purple-600/30">Sair</a>
+          </div>
+        </div>
+
+        <!-- Carrinho -->
+        <a href="#" class="relative hover:text-purple-400 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7h13L17 13M7 13H5.4" />
+          </svg>
+          Carrinho
+        </a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Conteúdo -->
   <main class="pt-24 px-6 flex flex-col items-center justify-center">
-
     @if ($isFornecedor)
       <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-8">
         Painel do Fornecedor
@@ -197,21 +195,16 @@
             </span>
           </a>
 
-          <a href="{{ route('endereco.index', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-            <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-            <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-              Editar Endereço
-            </span>
-          </a>
+          <a href="{{ route('usuario.enderecos', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
+  <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
+  <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+    Listar Endereços
+  </span>
+</a>
+
         </div>
       </div>
     @endif
-
   </main>
-
-  <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
-    &copy; 2025 <strong>SURA</strong> - Sistema Unificado de Registro e Administração
-  </footer>
-
 </body>
 </html>

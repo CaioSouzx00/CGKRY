@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
@@ -127,8 +126,32 @@ Route::prefix('admin/fornecedores')->group(function () {
 
 Route::get('/admin/fornecedores/esqueci-senha', [FornecedorPasswordResetController::class, 'mostrarFormulario'])->name('fornecedor.password.esqueciSenhaForm');
 
+// Rota para listar todos os fornecedores
+Route::get('/admin/fornecedores', [FornecedorController::class, 'index'])->name('fornecedores.lista');
 
-Route::get('/usuario_final/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('endereco.index');
+use App\Http\Controllers\AdminDashboardController;
 
-// Excluir endereço do usuário final
-Route::delete('/usuario_final/{id}/endereco/{endereco_id}', [EnderecoUsuarioFinalController::class, 'destroy'])->name('endereco.destroy');
+// Rota para o dashboard do admin
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+// Rota para listar todos os fornecedores no painel administrativo
+Route::get('/admin/fornecedores', [FornecedorController::class, 'index'])->name('admin.fornecedores');
+
+// Aprovar fornecedor
+Route::post('/admin/fornecedores/{id}/aprovar', [FornecedorController::class, 'aprovar'])->name('fornecedor.aprovar');
+
+// Rejeitar fornecedor
+Route::post('/admin/fornecedores/{id}/rejeitar', [FornecedorController::class, 'rejeitar'])->name('fornecedor.rejeitar');
+
+// Cadastro de fornecedor
+Route::get('/fornecedor/cadastro', [FornecedorController::class, 'mostrarCadastroForm'])->name('fornecedor.create');
+Route::post('/fornecedor/cadastro', [FornecedorController::class, 'cadastrarFornecedor'])->name('fornecedor.create.post');
+
+
+//Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'listarEnderecos'])->name('usuario.enderecos');
+
+
+Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('usuario.enderecos');
+Route::delete('/usuario/{id}/enderecos/{endereco_id}', [EnderecoUsuarioFinalController::class, 'destroy'])->name('endereco.destroy');
+Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('endereco.index');
+Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('usuario.enderecos');

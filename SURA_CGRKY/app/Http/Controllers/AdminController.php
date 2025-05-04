@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Administrador;
+use App\Models\FornecedorPendente; // Certifique-se de importar o model de fornecedores pendentes
 
 class AdminController extends Controller
 {
@@ -43,5 +44,15 @@ class AdminController extends Controller
     {
         Session::forget('admin');
         return redirect()->route('admin.login.form');
+    }
+
+    // Mostra o dashboard do admin
+    public function dashboard()
+    {
+        // Recupera os fornecedores pendentes do banco de dados
+        $fornecedoresPendentes = FornecedorPendente::where('status', 'pendente')->get();
+
+        // Passa os fornecedores pendentes para a view
+        return view('admin.dashboard', compact('fornecedoresPendentes'));
     }
 }

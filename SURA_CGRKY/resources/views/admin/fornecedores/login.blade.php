@@ -132,6 +132,11 @@
               <a href="{{ route('fornecedor.password.esqueciSenhaForm') }}" class="text-purple-400 hover:text-purple-600 transition">
                 Esqueceu a senha?
               </a>
+              <!-- Link para Cadastro -->
+              <div class="flex justify-center mt-4">
+              <p class="text-sm text-gray-300">Ainda não tem uma conta? <a href="{{ route('fornecedor.create') }}" class="text-purple-400 hover:text-purple-600 transition">Cadastre-se</a></p>
+              </div>
+
               <button type="submit"
                       class="relative px-5 py-2 border-2 border-violet-600 text-violet-400 rounded-xl hover:text-white hover:bg-violet-700 transition-all duration-300">
                 Entrar
