@@ -90,7 +90,7 @@
 
           <div class="text-center max-w-md mx-auto space-y-3">
           <h2 class="text-2xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-200 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
-              Olá, Adiministrador
+              Olá, Administrador
             </h2>
             <h2 class="text-sm text-indigo-300">Seja bem-vindo à</h2>
             <h1 class="text-4xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
