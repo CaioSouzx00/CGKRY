@@ -33,12 +33,14 @@ class PasswordResetController extends Controller
             ['token' => $token, 'created_at' => now()]
         );
 
-        // Enviar o e-mail com o código
-        Mail::raw("Seu código de recuperação de senha é: {$token}", function ($message) use ($request) {
+        $html = view('emails.recuperacao', ['token' => $token])->render();
+
+        Mail::html($html, function ($message) use ($request) {
             $message->to($request->email)
-                    ->from('caionk03@gmail.com', 'CGKRY') // Use um remetente validado!
-                    ->subject('Código de Recuperação de Senha');
-        });
+                ->from('caionk03@gmail.com', 'Hydrax')
+                ->subject('Código de Recuperação de Senha');
+});
+
 
         // Agora redireciona para o formulário de verificação do código com o e-mail já passado como parâmetro
         return redirect()->route('password.verificarCodigoForm', ['email' => $request->email])

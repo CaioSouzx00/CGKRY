@@ -28,11 +28,14 @@ class FornecedorPasswordResetController extends Controller
             ['token' => $token, 'created_at' => now()]
         );
 
-        Mail::raw("Seu código de recuperação de senha é: {$token}", function ($message) use ($request) {
+        $html = view('emails.recuperacao_fornecedor', ['token' => $token])->render();
+
+        Mail::html($html, function ($message) use ($request) {
             $message->to($request->email)
-                    ->from('caionk03@gmail.com', 'CGKRY')
+                    ->from('caionk03@gmail.com', 'Hydrax')
                     ->subject('Código de Recuperação de Senha - Fornecedor');
         });
+        
 
         return redirect()->route('fornecedor.password.verificarCodigoForm', ['email' => $request->email])
                          ->with('success', 'Código enviado para seu e-mail.');
