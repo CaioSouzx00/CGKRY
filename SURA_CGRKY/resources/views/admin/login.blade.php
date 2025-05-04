@@ -85,7 +85,7 @@
       <div class="w-1/2 rounded-md flex items-center justify-center bg-cover bg-center shadow-[0_4px_20px_rgba(30,58,138,0.3)]" style="background-image: url('/imagens/Post Jif 2025 (2).gif');"></div>
 
       <!-- Área de Login com imagem de fundo -->
-      <div class="w-1/2 rounded-md flex items-center justify-center p-8 shadow-[0_4px_30px_rgba(30,58,138,0.4)] bg-cover bg-center">
+      <div class="w-1/2 rounded-md bg-black/20 flex items-center justify-center p-8 shadow-[0_4px_30px_rgba(30,58,138,0.4)] bg-cover bg-center">
         <section class="p-8 rounded-3xl w-full max-w-sm text-left">
 
           <div class="text-center max-w-md mx-auto space-y-3">
