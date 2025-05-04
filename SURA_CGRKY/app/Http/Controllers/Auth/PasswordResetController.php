@@ -100,7 +100,7 @@ class PasswordResetController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:usuario_final,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:6|confirmed',
             'token' => 'required',
         ]);
 

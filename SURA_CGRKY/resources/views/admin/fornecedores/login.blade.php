@@ -128,7 +128,7 @@
             </div>
 
             <div class="flex justify-between items-center text-sm">
-            <a href="#"></a>
+            <a href="#" class="text-indigo-400 hover:text-indigo-600 transition"></a>
               <button type="submit"
                       class="relative px-5 py-2 border-2 border-violet-600 text-violet-400 rounded-xl hover:text-white hover:bg-violet-700 transition-all duration-300">
                 Entrar
