@@ -86,15 +86,15 @@
         <section class="p-8 rounded-3xl w-full max-w-sm text-left">
 
           <div class="text-center max-w-md mx-auto space-y-3">
-          <h2 class="text-2xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-200 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
-              Olá, Forncedor
+            <h2 class="text-2xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-200 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
+              Olá, Fornecedor
             </h2>
             <h2 class="text-sm text-indigo-300">Seja bem-vindo à</h2>
             <h1 class="text-4xl font-[Orbitron] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-200 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-2xl">
               Hydrax
             </h1>
             <h3 class="text-sm text-gray-300">
-            Gerencie seus produtos, acompanhe pedidos e mantenha seu catálogo sempre atualizado com facilidade e agilidade.
+              Gerencie seus produtos, acompanhe pedidos e mantenha seu catálogo sempre atualizado com facilidade e agilidade.
             </h3>
           </div>
 
@@ -128,7 +128,10 @@
             </div>
 
             <div class="flex justify-between items-center text-sm">
-            <a href="#" class="text-indigo-400 hover:text-indigo-600 transition"></a>
+
+              <a href="{{ route('fornecedor.password.esqueciSenhaForm') }}" class="text-purple-400 hover:text-purple-600 transition">
+                Esqueceu a senha?
+              </a>
               <button type="submit"
                       class="relative px-5 py-2 border-2 border-violet-600 text-violet-400 rounded-xl hover:text-white hover:bg-violet-700 transition-all duration-300">
                 Entrar
