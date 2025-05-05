@@ -132,16 +132,17 @@
               <a href="{{ route('fornecedor.password.esqueciSenhaForm') }}" class="text-purple-400 hover:text-purple-600 transition">
                 Esqueceu a senha?
               </a>
-              <!-- Link para Cadastro -->
-              <div class="flex justify-center mt-4">
-              <p class="text-sm text-gray-300">Ainda não tem uma conta? <a href="{{ route('fornecedor.create') }}" class="text-purple-400 hover:text-purple-600 transition">Cadastre-se</a></p>
-              </div>
 
               <button type="submit"
                       class="relative px-5 py-2 border-2 border-violet-600 text-violet-400 rounded-xl hover:text-white hover:bg-violet-700 transition-all duration-300">
                 Entrar
               </button>
             </div>
+            <div class="mt-4 text-sm text-center">
+            <p>Não possui conta?
+              <a href="{{ route('fornecedor.create') }}" class="text-purple-400 hover:text-purple-600 transition">Cadastrar</a>
+            </p>
+          </div>
           </form>
 
           <footer class="mt-16 text-center text-xs text-white/60 hover:text-indigo-300 transition duration-300">
