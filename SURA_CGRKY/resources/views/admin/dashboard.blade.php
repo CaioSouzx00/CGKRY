@@ -164,91 +164,115 @@
   <div id="particles-js"></div>
 
   <script>
+    // Configuração do Particles.js
     particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 60,
-          "density": {
-            "enable": true,
-            "value_area": 900
-          }
+        "particles": {
+            "number": {
+                "value": 60,
+                "density": {
+                    "enable": true,
+                    "value_area": 900
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": true
+            },
+            "size": {
+                "value": 3,
+                "random": true
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false
+            }
         },
-        "color": {
-          "value": "#ffffff"
+        "interactivity": {
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": false
+                },
+                "resize": true
+            }
         },
-        "shape": {
-          "type": "circle",
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": true
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false
-        }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": false
-          },
-          "resize": true
-        }
-      },
-      "retina_detect": true
+        "retina_detect": true
     });
 
-    // Chart.js example for Users and Fornecedores
-    var ctxUser = document.getElementById('userChart').getContext('2d');
-    var userChart = new Chart(ctxUser, {
-      type: 'line',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],  // Exemplo de meses
-        datasets: [{
-          label: 'Usuários',
-          data: [10, 20, 30, 40, 50], // Exemplo de dados para Usuários
-          fill: false,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          tension: 0.1
-        },
-        {
-          label: 'Fornecedor',
-          data: [5, 10, 15, 20, 25], // Exemplo de dados para Fornecedor
-          fill: false,
-          borderColor: 'rgba(255, 99, 132, 1)', // Cor diferente para a linha
-          tension: 0.1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
+    // Quando a página carregar, busque os dados para o gráfico
+    document.addEventListener('DOMContentLoaded', function () {
+        // Agora gerando a URL corretamente
+        var url = '{{ route("admin.graficos.dados") }}';  // Gerando a URL com o Blade
+
+        fetch(url)  // Fazendo a requisição para o controller
+            .then(response => response.json())
+            .then(data => {
+                // Pegando o contexto do gráfico
+                var ctxUser = document.getElementById('userChart').getContext('2d');
+
+                // Criando o gráfico com os dados obtidos
+                var userChart = new Chart(ctxUser, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,  // Meses ou outro dado para labels
+                        datasets: [{
+                            label: 'Usuários',
+                            data: data.usuarios,  // Dados dos usuários
+                            fill: false,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Fornecedores',
+                            data: data.fornecedores,  // Dados dos fornecedores
+                            fill: false,
+                            borderColor: 'rgba(255, 99, 132, 1)', // Cor diferente para a linha
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados para o gráfico:', error);
+            });
     });
-  </script>
+</script>
+
+
+
 </body>
 </html>
