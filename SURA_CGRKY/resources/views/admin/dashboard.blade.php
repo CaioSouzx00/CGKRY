@@ -3,118 +3,252 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SURA - Administração</title>
+  <title>Dashboard Adm</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @keyframes moveBackground {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes particleMovement {
-      0% { transform: translate(-50%, -50%) scale(0.8); }
-      50% { transform: translate(50%, 50%) scale(1.5); }
-      100% { transform: translate(-50%, -50%) scale(0.8); }
-    }
-
-    body {
-      background: linear-gradient(135deg, #0d0d0d, #1a0033, #000c40);
-      animation: moveBackground 20s linear infinite;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      position: relative;
-      color: white;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(100, 100, 255, 0.1);
-      box-shadow: 0 0 15px rgba(100, 100, 255, 0.2);
-      opacity: 0.7;
-      pointer-events: none;
-      animation: particleMovement 5s ease-in-out infinite;
-    }
-
-    .particle1 { width: 100px; height: 100px; top: 10%; left: 25%; animation-duration: 6s; }
-    .particle2 { width: 120px; height: 120px; top: 50%; left: 60%; animation-duration: 7s; }
-    .particle3 { width: 80px; height: 80px; top: 70%; left: 30%; animation-duration: 8s; }
-    .particle4 { width: 150px; height: 150px; top: 20%; left: 75%; animation-duration: 9s; }
-    .particle5 { width: 90px; height: 90px; top: 40%; left: 10%; animation-duration: 10s; }
-
-    .line {
-      position: absolute;
-      background-color: rgba(138, 43, 226, 0.1);
-      height: 2px;
-      animation: lineMovement 10s infinite ease-in-out;
-      box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
-    }
-
-    @keyframes lineMovement {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .line1 { width: 50vw; top: 20%; left: 5%; animation-duration: 12s; }
-    .line2 { width: 60vw; top: 50%; left: 10%; animation-duration: 15s; }
-    .line3 { width: 70vw; top: 70%; left: 15%; animation-duration: 18s; }
-  </style>
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<style>
+  @keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-  <!-- Partículas -->
-  <div class="particle particle1"></div>
-  <div class="particle particle2"></div>
-  <div class="particle particle3"></div>
-  <div class="particle particle4"></div>
-  <div class="particle particle5"></div>
+  body {
+    background: linear-gradient(45deg,rgb(35, 6, 41),rgb(74, 14, 138), #000000);
+    background-size: 400% 400%;
+    animation: moveBackground 15s ease infinite;
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo esteja por cima do fundo */
+  }
 
-  <!-- Linhas -->
-  <div class="line line1"></div>
-  <div class="line line2"></div>
-  <div class="line line3"></div>
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Faz com que o fundo de partículas fique atrás do conteúdo */
+  }
+</style>
+<body class="min-h-screen overflow-hidden">
 
-  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/50 border-b-2 border-purple-700/50 rounded-b-lg shadow-lg transition-all duration-300 ease-in-out">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center gap-6 md:gap-0">
-      <!-- Título + Saudação -->
-      <div class="flex flex-col text-left text-white mr-auto">
-        <h1 class="text-2xl font-bold tracking-wider drop-shadow-md text-purple-300">SURA</h1>
-        <p class="text-sm md:text-base text-white/80 mt-1">
-          Bem-vindo, <span class="font-semibold text-white">{{ $admin->nome_usuario }}</span>
-        </p>
+<nav class="fixed top-64 right-[calc(100%-12.5rem)] h-[calc(100vh-30rem)] bg-black/25 backdrop-blur-md border border-white/25 shadow-xl text-white z-10 rounded-3xl overflow-hidden group transition-all duration-300 w-14 hover:w-48 flex flex-col justify-between items-start py-4 origin-right">
+    
+    <!-- Itens do menu -->
+    <div class="flex flex-col space-y-4 w-full px-2">
+      <a href="#" class="flex items-center space-x-3 px-2 py-2 hover:bg-purple-600/30 rounded-md transition">
+        <span class="text-lg"></span>
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Ação Futura</span>
+      </a>
+      <a href="#" class="flex items-center space-x-3 px-2 py-2 hover:bg-purple-600/30 rounded-md transition">
+        <span class="text-lg"></span>
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Ação Futura</span>
+      </a>
+    </div>
+    <div class="flex flex-col justify-between space-y-4 w-full px-2">
+      <!-- Botão sair -->
+      <a href="http://127.0.0.1:8080" class="flex items-center space-x-3 px-2 py-2 hover:bg-purple-600/30 rounded-md w-full mb-2 transition group">
+        <!-- Ícone -->
+        <img src="/imagens/Testes.png" alt="Ícone de Sair" class="w-5 h-5" />
+        <!-- Texto -->
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Sair</span>
+      </a>
+    </div>
+  </nav>
+  <!-- Conteúdo principal -->
+  <div class="ml-[17.5rem] mt-8 mr-64 h-[calc(7vh-0.5rem)] bg-black/25 backdrop-blur-md border border-white/25 shadow-xl text-white rounded-3xl p-6 flex items-center justify-center"> 
+    <div class="h-8 w-[2%] mr-32 bg-black/20 rounded-2xl shadow-inner px-4 flex items-center justify-center">
+      <h1 class="flex items-center justify-left">Hz</h1>
+    </div>
+    <div class="h-8 w-[70%] bg-black/20 rounded-2xl shadow-inner px-4 flex items-center">
+      <p class="text-sm md:text-base text-white">
+        Bem-vindo, <span class="font-semibold text-white">{{ $admin->nome_usuario }}</span>, ao seu painel de administração.
+      </p>
+    </div> 
+  </div>
+
+  <!-- Retângulo principal ao lado da sidebar -->
+  <div class="ml-[13.5rem] mt-5 mr-48 h-[calc(100vh-10rem)] bg-black/25 backdrop-blur-md border border-white/25 shadow-xl text-white rounded-2xl p-6 flex flex-col justify-between">
+
+    <!-- Linha superior -->
+    <div class="flex justify-between gap-4 mb-4 h-[60%]">
+      <!-- Médio (esquerda - altura maior, largura menor) -->
+      <div class="w-1/5 bg-black/20 rounded-xl border border-white/10 shadow-inner p-4">
+        <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-white mb-6 text-center">
+          Painel Fornecedor
+        </h1>
+
+        <!-- Links empilhados -->
+        <div class="flex flex-col space-y-4">
+          <a href="{{ route('admin.fornecedores') }}" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.8)]">
+            <span class="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+            <span class="relative w-full text-left text-purple-600 transition-colors duration-300 ease-in-out group-hover:text-white">Pendentes</span>
+          </a>
+
+          <a href="#_" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.8)]">
+            <span class="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+            <span class="relative w-full text-left text-purple-600 transition-colors duration-300 ease-in-out group-hover:text-white">Listar</span>
+          </a>
+
+          <a href="#_" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.8)]">
+            <span class="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+            <span class="relative w-full text-left text-purple-600 transition-colors duration-300 ease-in-out group-hover:text-white">Estoque</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Título ADM -->
-      <div class="flex justify-center items-center">
-        <h1 class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-6">
-          ADMINISTRADOR
-        </h1>
+      <!-- Grande (direita - altura maior) -->
+      <div class="w-3/4 bg-black/20 rounded-xl border border-white/30 shadow-inner p-4">
+        <!-- Canvas do gráfico -->
+        <canvas id="userChart"></canvas>
       </div>
     </div>
-  </header>
 
-  <main class="pt-40 px-6 flex flex-col items-center justify-center">
-    <section class="bg-black bg-opacity-50 backdrop-blur-md p-10 rounded-3xl shadow-[0_20px_50px_rgba(124,58,237,0.3)] w-full max-w-md text-center border border-purple-600/30 relative overflow-hidden">
+    <!-- Linha inferior -->
+    <div class="flex justify-between gap-4 h-[35%]">
+      <div class="w-1/5 bg-black/30 rounded-xl border border-white/30 shadow-inner p-4">
+        <div class="w-full h-full aspect-square rounded-xl relative overflow-hidden">
+          <div class="relative w-full h-full rounded-lg overflow-hidden group">
+            <img src="/imagens/Post Jif 2025 (8).png"
+                 alt="Logo"
+                 class="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"/>
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-80 text-white flex flex-col items-center justify-center px-4 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <h4 class="text-lg font-bold mb-1 border-b-4 border-indigo-600 inline-block">Hydrax</h4>
+              <p class="text-xs leading-tight">Este é o painel de Admins.</p>
+              <p class="text-[10px] mt-1 text-gray-300">Gerenciamento de Usuários, Controle de Conteúdo, Acesso a Relatórios, Gerenciamento de Configurações e Monitoramento de Atividades.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-6">
-        Funções ADM
-      </h2>
+      <div class="w-3/4 flex gap-4">
+        <div class="w-1/4 bg-black/20 rounded-xl border border-white/30 shadow-inner p-4">
+          <h1>Ações futuras</h1>
+          <a href="#_" class="px-5 py-2.5 relative rounded group overflow-hidden font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Futuro</span>
+          </a>
+        </div>
+        
+        <div class="w-1/4 bg-black/20 rounded-xl border border-white/30 shadow-inner p-4">
+          <h1>Ações futuras</h1>
+          <a href="#_" class="px-5 py-2.5 relative rounded group overflow-hidden font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Futuro</span>
+          </a>
+        </div>
 
-      <!-- Botão para listar todos os fornecedores -->
-      <a href="{{ route('admin.fornecedores') }}" class="mt-6 inline-block bg-purple-600 px-6 py-3 rounded-lg text-white font-bold text-lg hover:bg-purple-700 transition-all duration-300">
-        Ver Todos os Fornecedores
-      </a>
+        <div class="w-1/4 bg-black/20 rounded-xl border border-white/30 shadow-inner p-4">
+          <h1>Ações futuras</h1>
+          <a href="#_" class="px-5 py-2.5 relative rounded group overflow-hidden font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Futuro</span>
+          </a>
+        </div>
 
-    </section>
-  </main>
+        <div class="w-1/4 bg-black/20 rounded-xl border border-white/30 shadow-inner p-4">
+          <h1>Ações futuras</h1>
+          <a href="#_" class="px-5 py-2.5 relative rounded group overflow-hidden font-medium bg-purple-50 text-purple-600 inline-block">
+            <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
+            <span class="relative group-hover:text-white">Futuro</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div id="particles-js"></div>
 
-  <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
-    &copy; 2025 <strong>SURA</strong> - Sistema Unificado de Registro e Administração
-  </footer>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": {
+            "enable": true,
+            "value_area": 900
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": true
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": false
+          },
+          "resize": true
+        }
+      },
+      "retina_detect": true
+    });
 
+    // Chart.js example for Users and Fornecedores
+    var ctxUser = document.getElementById('userChart').getContext('2d');
+    var userChart = new Chart(ctxUser, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],  // Exemplo de meses
+        datasets: [{
+          label: 'Usuários',
+          data: [10, 20, 30, 40, 50], // Exemplo de dados para Usuários
+          fill: false,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          tension: 0.1
+        },
+        {
+          label: 'Fornecedor',
+          data: [5, 10, 15, 20, 25], // Exemplo de dados para Fornecedor
+          fill: false,
+          borderColor: 'rgba(255, 99, 132, 1)', // Cor diferente para a linha
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
