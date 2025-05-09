@@ -114,7 +114,7 @@ class PasswordResetController extends Controller
 
         if (!$reset) {
             return redirect()->route('password.esqueciSenhaForm')
-                             ->withErrors(['token' => 'O código de recuperação é inválido ou expirou.']);
+            ->withErrors(['token' => 'O código de recuperação é inválido ou expirou.']);
         }
 
         // Atualizar a senha no banco de dados

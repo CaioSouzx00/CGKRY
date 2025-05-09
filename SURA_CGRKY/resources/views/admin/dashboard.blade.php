@@ -130,7 +130,7 @@
           <h1>Ações futuras</h1>
           <a href="#_" class="px-5 py-2.5 relative rounded group overflow-hidden font-medium bg-purple-50 text-purple-600 inline-block">
             <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-purple-600 group-hover:h-full opacity-90"></span>
-            <span class="relative group-hover:text-white">Futuro</span>
+            <span class="relative group-hover:text-white">Button Text</span>
           </a>
         </div>
         
@@ -217,62 +217,59 @@
                 "resize": true
             }
         },
-        "retina_detect": true
-    });
+        "retina_detect": true });
 
-    // Quando a página carregar, busque os dados para o gráfico
-    document.addEventListener('DOMContentLoaded', function () {
-        // Agora gerando a URL corretamente
-        var url = '{{ route("admin.graficos.dados") }}';  // Gerando a URL com o Blade
+// Quando a página carregar, busque os dados para o gráfico
+document.addEventListener('DOMContentLoaded', function () {
+    // Agora gerando a URL corretamente
+    var url = '{{ route("admin.graficos.dados") }}';  // Gerando a URL com o Blade
 
-        fetch(url)  // Fazendo a requisição para o controller
-            .then(response => response.json())
-            .then(data => {
-                // Pegando o contexto do gráfico
-                var ctxUser = document.getElementById('userChart').getContext('2d');
+    fetch(url)  // Fazendo a requisição para o controller
+        .then(response => response.json())
+        .then(data => {
+            // Pegando o contexto do gráfico
+            var ctxUser = document.getElementById('userChart').getContext('2d');
 
-                // Criando o gráfico com os dados obtidos
-                var userChart = new Chart(ctxUser, {
-                    type: 'line',
-                    data: {
-                        labels: data.labels,  // Meses ou outro dado para labels
-                        datasets: [{
-                            label: 'Usuários',
-                            data: data.usuarios,  // Dados dos usuários
-                            fill: false,
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            tension: 0.1
-                        },
-                        {
-                            label: 'Fornecedores',
-                            data: data.fornecedores,  // Dados dos fornecedores
-                            fill: false,
-                            borderColor: 'rgba(255, 99, 132, 1)', // Cor diferente para a linha
-                            tension: 0.1
-                        }]
+            // Criando o gráfico com os dados obtidos
+            var userChart = new Chart(ctxUser, {
+                type: 'line',
+                data: {
+                    labels: data.labels,  // Meses ou outro dado para labels
+                    datasets: [{
+                        label: 'Usuários',
+                        data: data.usuarios,  // Dados dos usuários
+                        fill: false,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        tension: 0.1
                     },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'top'
-                            }
+                    {
+                        label: 'Fornecedores',
+                        data: data.fornecedores,  // Dados dos fornecedores
+                        fill: false,
+                        borderColor: 'rgba(255, 99, 132, 1)', // Cor diferente para a linha
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
                         }
                     }
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao buscar dados para o gráfico:', error);
+                }
             });
-    });
+        })
+        .catch(error => {
+            console.error('Erro ao buscar dados para o gráfico:', error);
+        });
+});
 </script>
-
-
 
 </body>
 </html>
