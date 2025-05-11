@@ -154,8 +154,8 @@ Route::post('/fornecedor/cadastro', [FornecedorController::class, 'cadastrarForn
 Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('usuario.enderecos');
 Route::delete('/usuario/{id}/enderecos/{endereco_id}', [EnderecoUsuarioFinalController::class, 'destroy'])->name('endereco.destroy');
 Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('endereco.index');
-Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('usuario.enderecos');
-
-
 
 Route::get('/admin/graficos/dados', [AdminController::class, 'dadosGraficos'])->name('admin.graficos.dados');
+
+// Listar endereços do usuário final
+Route::get('/usuario/{id}/enderecos', [EnderecoUsuarioFinalController::class, 'index'])->name('usuario.enderecos');

@@ -50,6 +50,7 @@
 </head>
 
 <body class="min-h-screen overflow-hidden">
+  
   <!-- Botão voltar -->
   <a href="http://127.0.0.1:8080"
     class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-purple-700 transition-colors duration-300 shadow-[0_4px_20px_rgba(102,51,153,0.5)]"

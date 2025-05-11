@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB; // Importação necessária para usar DB
-use Carbon\Carbon; // Importação necessária para lidar com datas
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Administrador;
 use App\Models\FornecedorPendente;
 
@@ -26,13 +26,17 @@ class AdminController extends Controller
             'senha' => 'required',
         ]);
 
-        $admin = Administrador::where('nome_usuario', $request->nome_usuario)->first();
+        // 🔄 AJUSTE: Limita apenas aos campos esperados
+        $credentials = $request->only('nome_usuario', 'senha');
 
-        if (!$admin || !Hash::check($request->senha, $admin->senha)) {
+        $admin = Administrador::where('nome_usuario', $credentials['nome_usuario'])->first();
+
+        if (!$admin || !Hash::check($credentials['senha'], $admin->senha)) {
             return back()->withErrors(['nome_usuario' => 'Nome de usuário ou senha inválidos'])->withInput();
         }
 
-        Session::put('admin', $admin);
+        // 🔄 AJUSTE: Uso alternativo do helper session() (opcional, mesmo comportamento)
+        session(['admin' => $admin]);
 
         return redirect()->route('admin.dashboard');
     }
@@ -40,7 +44,8 @@ class AdminController extends Controller
     // Logout
     public function logout()
     {
-        Session::forget('admin');
+        // 🔄 AJUSTE: Mesmo aqui, uso do helper session() (opcional)
+        session()->forget('admin');
         return redirect()->route('admin.login.form');
     }
 
@@ -59,27 +64,29 @@ class AdminController extends Controller
         $usuariosPorMes = DB::table('usuario_final')
             ->select(DB::raw('MONTH(created_at) as mes'), DB::raw('count(*) as total'))
             ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy(DB::raw('MONTH(created_at)')) // 🔄 AJUSTE: Garante ordenação dos meses
             ->pluck('total', 'mes');
-    
+
         // Contagem de fornecedores por mês (na tabela fornecedores)
         $fornecedoresPorMes = DB::table('fornecedores')
             ->select(DB::raw('MONTH(created_at) as mes'), DB::raw('count(*) as total'))
             ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy(DB::raw('MONTH(created_at)')) // 🔄 AJUSTE: Mesmo aqui
             ->pluck('total', 'mes');
-    
+
         // Preenche as labels (meses) com base nos dados
         $labels = range(1, 12);
-    
+
         // Preenche os dados dos usuários por mês
-        $usuarios = array_map(function($month) use ($usuariosPorMes) {
-            return $usuariosPorMes->get($month, 0);  // Retorna 0 caso o mês não tenha dados
+        $usuarios = array_map(function ($month) use ($usuariosPorMes) {
+            return $usuariosPorMes->get($month, 0); // Retorna 0 caso o mês não tenha dados
         }, $labels);
-    
+
         // Preenche os dados dos fornecedores por mês
-        $fornecedores = array_map(function($month) use ($fornecedoresPorMes) {
-            return $fornecedoresPorMes->get($month, 0);  // Retorna 0 caso o mês não tenha dados
+        $fornecedores = array_map(function ($month) use ($fornecedoresPorMes) {
+            return $fornecedoresPorMes->get($month, 0); // Retorna 0 caso o mês não tenha dados
         }, $labels);
-    
+
         // Retorna os dados como resposta JSON
         return response()->json([
             'labels' => $labels,
@@ -87,6 +94,4 @@ class AdminController extends Controller
             'fornecedores' => $fornecedores
         ]);
     }
-    
-
 }
