@@ -21,17 +21,18 @@ class AuthController extends Controller
             'senha' => 'required',
         ]);
 
-        $usuario = UsuarioFinal::where('email', $request->email)->first();
+        // 🔄 AJUSTE: Limita os dados que serão usados
+        $credentials = $request->only('email', 'senha');
 
-        if (!$usuario || !Hash::check($request->senha, $usuario->senha)) {
+        $usuario = UsuarioFinal::where('email', $credentials['email'])->first();
+
+        if (!$usuario || !Hash::check($credentials['senha'], $usuario->senha)) {
             return back()->withErrors(['email' => 'Email ou senha inválidos'])->withInput();
         }
 
-        // Salva na sessão (ou pode usar Auth se preferir)
-        Session::put('usuario', $usuario);
+        // 🔄 AJUSTE: Usa helper session() (opcional, mesmo comportamento)
+        session(['usuario' => $usuario]);
 
-        return redirect()->route('dashboard'); // muda pra onde quiser redirecionar após login
+        return redirect()->route('dashboard'); // redirecionamento pode ser ajustado conforme necessário
     }
-
 }
-

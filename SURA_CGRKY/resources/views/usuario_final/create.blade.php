@@ -33,9 +33,9 @@
 </head>
 <body class="min-h-screen overflow-hidden">
     <!-- Botão voltar -->
-    <a href="{{ route('fornecedor.login') }} "
-     class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-purple-700 transition-colors duration-300 shadow-[0_4px_20px_rgba(102,51,153,0.5)]"
-     title="Voltar para o login">
+  <a href="http://127.0.0.1:8080"
+     class="fixed top-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-indigo-700 hover:bg-purple-600 transition-colors duration-300 shadow-[0_4px_20px_rgba(30,64,175,0.4)]"
+     title="Voltar para o painel">
     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
     </svg>
