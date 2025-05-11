@@ -84,17 +84,17 @@
 
         <!-- Links empilhados -->
         <div class="flex flex-col space-y-4">
-          <a href="{{ route('admin.fornecedores') }}" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.8)]">
+          <a href="{{ route('admin.fornecedores') }}" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.5)]">
             <span class="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
             <span class="relative w-full text-left text-purple-600 transition-colors duration-300 ease-in-out group-hover:text-white">Pendentes</span>
           </a>
 
-          <a href="#_" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.8)]">
+          <a href="#_" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.5)]">
             <span class="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
             <span class="relative w-full text-left text-purple-600 transition-colors duration-300 ease-in-out group-hover:text-white">Listar</span>
           </a>
 
-          <a href="#_" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.8)]">
+          <a href="#_" class="w-full relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group shadow-[0_4px_20px_rgba(128,0,255,0.5)]">
             <span class="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
             <span class="relative w-full text-left text-purple-600 transition-colors duration-300 ease-in-out group-hover:text-white">Estoque</span>
           </a>
@@ -168,30 +168,30 @@
     particlesJS("particles-js", {
         "particles": {
             "number": {
-                "value": 60,
+                "value": 70,
                 "density": {
                     "enable": true,
                     "value_area": 900
                 }
             },
             "color": {
-                "value": "#ffffff"
+                "value": "#fff"
             },
             "shape": {
                 "type": "circle",
             },
             "opacity": {
-                "value": 0.5,
+                "value": 0.4,
                 "random": true
             },
             "size": {
-                "value": 3,
+                "value": 5,
                 "random": true
             },
             "line_linked": {
                 "enable": true,
                 "distance": 150,
-                "color": "#ffffff",
+                "color": "#fff",
                 "opacity": 0.4,
                 "width": 1
             },
