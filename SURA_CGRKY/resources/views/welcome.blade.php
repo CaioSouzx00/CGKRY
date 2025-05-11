@@ -2,135 +2,228 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SURA - Administração</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sidebar com botão X</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @keyframes moveBackground {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes particleMovement {
-      0% { transform: translate(-50%, -50%) scale(0.8); }
-      50% { transform: translate(50%, 50%) scale(1.5); }
-      100% { transform: translate(-50%, -50%) scale(0.8); }
-    }
-
     body {
-      background: linear-gradient(135deg, #0d0d0d, #1a0033, #000c40);
-      animation: moveBackground 20s linear infinite;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      position: relative;
-      color: white;
+      font-family: 'Montserrat', sans-serif;
     }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(100, 100, 255, 0.1);
-      box-shadow: 0 0 15px rgba(100, 100, 255, 0.2);
-      opacity: 0.7;
-      pointer-events: none;
-      animation: particleMovement 5s ease-in-out infinite;
-    }
-
-    .particle1 { width: 100px; height: 100px; top: 10%; left: 25%; animation-duration: 6s; }
-    .particle2 { width: 120px; height: 120px; top: 50%; left: 60%; animation-duration: 7s; }
-    .particle3 { width: 80px; height: 80px; top: 70%; left: 30%; animation-duration: 8s; }
-    .particle4 { width: 150px; height: 150px; top: 20%; left: 75%; animation-duration: 9s; }
-    .particle5 { width: 90px; height: 90px; top: 40%; left: 10%; animation-duration: 10s; }
-
-    .line {
-      position: absolute;
-      background-color: rgba(138, 43, 226, 0.1);
-      height: 2px;
-      animation: lineMovement 10s infinite ease-in-out;
-      box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
-    }
-
-    @keyframes lineMovement {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .line1 { width: 50vw; top: 20%; left: 5%; animation-duration: 12s; }
-    .line2 { width: 60vw; top: 50%; left: 10%; animation-duration: 15s; }
-    .line3 { width: 70vw; top: 70%; left: 15%; animation-duration: 18s; }
-
-    .card {
-      background: rgba(0, 0, 0, 0.5);
-      border: 2px solid rgba(75, 0, 119, 0.6);
-      border-radius: 12px;
-      padding: 1.5rem;
-      color: rgba(200, 200, 255, 0.9);
-      transition: background-color 0.3s ease;
-    }
-
-    /* Efeito apenas de mudança de cor nos links */
-    .card:hover {
-      background-color: rgba(75, 0, 119, 0.3);
-    }
-
   </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100 min-h-screen relative">
 
-  <!-- Partículas -->
-  <div class="particle particle1"></div>
-  <div class="particle particle2"></div>
-  <div class="particle particle3"></div>
-  <div class="particle particle4"></div>
-  <div class="particle particle5"></div>
+  <!-- Toggle (checkbox) -->
+  <input type="checkbox" id="menu-toggle" class="hidden peer" />
 
-  <!-- Linhas -->
-  <div class="line line1"></div>
-  <div class="line line2"></div>
-  <div class="line line3"></div>
+  <!-- Botão ☰ (aparece só quando menu fechado) -->
+  <label for="menu-toggle" class="fixed top-4 left-4 z-50 text-white bg-indigo-200 p-2 rounded cursor-pointer peer-checked:hidden">
+    ☰
+  </label>
 
-  <main class="pt-24 px-6 flex flex-col items-center justify-center">
+  <!-- Sidebar -->
+  <aside class="fixed top-0 left-0 h-full w-64 bg-black text-white z-40 transform -translate-x-full peer-checked:translate-x-0 transition-transform duration-300">
 
-    <section class="bg-black bg-opacity-50 backdrop-blur-md p-10 rounded-3xl shadow-2xl w-full max-w-4xl text-center border border-gray-800">
-      <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-8">
-        Painel de Administração
-      </h2>
+    <!-- Botão ✕ (aparece dentro do menu quando aberto) -->
+    <label for="menu-toggle" class="absolute top-4 right-4 text-white text-2xl cursor-pointer">
+      ✕
+    </label>
 
-      <p class="text-white/60 mb-10 hover:text-white transition-colors duration-300">Gerencie cadastros, acessos e operações do sistema</p>
+    <!-- Conteúdo do menu -->
+    <div class="mt-16 px-4 bg-black">
+      <div class="flex justify-center mb-6">
+        <img src="/imagens/Post Jif 2025 (8).png" alt="Logo" class="w-32 h-32 object-cover">
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-        <!-- Card: Cadastrar Usuário -->
-        <a href="{{ route('usuario_final.create') }}" class="card">
-          <h3 class="text-lg font-semibold text-indigo-400 mb-2">➕ Cadastrar Usuário Final</h3>
-          <p class="text-gray-400">Adicione novos usuários ao sistema com permissões específicas.</p>
+      <hr class="border-gray-500 opacity-40 mb-4">
+
+      <nav class="space-y-3">
+        <a href="{{ route('login.form') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+          <img src="/imagens/Testes/6.png" alt="Entrar" class="w-6 h-6 mr-3"> Entrar
         </a>
-
-        <!-- Card: Login Usuário -->
-        <a href="{{ route('login.form') }}" class="card">
-          <h3 class="text-lg font-semibold text-indigo-400 mb-2">👥 Entrar como Usuário</h3>
-          <p class="text-gray-400">Acesse a plataforma como usuário comum para visualizar funcionalidades.</p>
+        <a href="{{ route('usuario_final.create') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+          <img src="/imagens/Post Jif 2025 (9).png" alt="Criar Conta" class="w-6 h-6 mr-3"> Criar Conta
         </a>
-
-        <!-- Card: Login Administrador -->
-        <a href="{{ route('admin.login.form') }}" class="card">
-          <h3 class="text-lg font-semibold text-indigo-400 mb-2">🛠️ Entrar como Administrador</h3>
-          <p class="text-gray-400">Gerencie todos os recursos da aplicação como administrador.</p>
+        <a href="{{ route('fornecedor.login') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+          <img src="/imagens/Testes/8.png" alt="Fornecedores" class="w-6 h-6 mr-3"> Fornecedores
         </a>
-
-        <!-- Card: Login Fornecedor -->
-        <a href="{{ route('fornecedor.login') }}" class="card">
-          <h3 class="text-lg font-semibold text-indigo-400 mb-2">🏪 Entrar como Fornecedor</h3>
-          <p class="text-gray-400">Acesse funcionalidades específicas para fornecedores.</p>
+        <a href="{{ route('admin.login.form') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+          <img src="/imagens/Testes/7.png" alt="Administração" class="w-6 h-6 mr-3"> Administração
         </a>
+      </nav>
+
+      <hr class="border-gray-500 opacity-40 my-6">
+
+      <p class="text-xs text-center text-gray-400">&copy; 2025 <strong>Hydrax</strong></p>
+    </div>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <main class="transition-all duration-300 peer-checked:ml-64 ml-0">
+  <section class="h-20"></section>
+    <section class="bg-gradient-to-r from-indigo-800 to-indigo-600 py-20 text-center">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">O melhor do esporte em um só lugar</h2>
+        <p class="text-lg text-gray-200 mb-6">Confira nossas categorias e escolha o melhor tênis para seu esporte favorito!</p>
+        <a href="#Categorias" class="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-200 transition">Ver Categorias</a>
       </div>
     </section>
+    <section class="h-20"></section>
 
-    <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
-      &copy; 2025 <strong>SURA</strong> - Sistema Unificado de Registro e Administração
-    </footer>
+
+<section id="Categorias" class="py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center text-white mb-8 tracking-wide border-b-4 border-indigo-600 pb-2">
+      Categorias
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-12">
+
+
+<!-- Vôlei -->
+<div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 relative overflow-hidden">
+<div class="relative h-64 rounded-lg mb-4 overflow-hidden group">
+  <img src="https://i.pinimg.com/736x/06/05/81/0605810533a00cd0973c46c3949d7c44.jpg"
+       alt="Imagem Ran Takahashi"
+       class="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"/>
+  <div class="absolute inset-0 bg-gray-900 bg-opacity-80 text-white flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-center">
+    <h4 class="text-xl font-bold mb-2 border-b-4 border-indigo-600 inline-block"">Ran Takahashi</h4>
+    <p class="text-sm">Destaque da seleção japonesa, conhecido por sua versatilidade e explosão.</p>
+    <p class="text-xs mt-2 text-gray-300">O vôlei exige reflexo rápido, agilidade e trabalho em equipe para vencer cada ponto.</p>
+  </div>
+</div>
+<h3 class="text-xl font-semibold text-white text-center">Vôlei</h3>
+<a href="{{ route('login.form') }}" class="relative rounded px-5 py-2.5 overflow-hidden group bg-indigo-600 hover:bg-gradient-to-r hover:from-indigo-600 hover:to-indigo-500 text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 transition-all duration-300 mt-4 w-full block text-center">
+  <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  <span class="relative">Comprar</span>
+</a>
+</div>
+
+<!-- Tênis de mesa -->
+<div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 relative overflow-hidden">
+<div class="relative h-64 rounded-lg mb-4 overflow-hidden group">
+  <img src="https://i.pinimg.com/736x/80/64/72/80647230c3fe33e12698ff04cefe9711.jpg"
+       alt="Imagem Hugo Calderano"
+       class="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"/>
+  <div class="absolute inset-0 bg-gray-900 bg-opacity-80 text-white flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-center">
+    <h4 class="text-xl font-bold mb-2 border-b-4 border-indigo-600 inline-block"">Hugo Calderano</h4>
+    <p class="text-sm">Principal nome do tênis de mesa brasileiro, top mundial.</p>
+    <p class="text-xs mt-2 text-gray-300">O tênis de mesa combina reflexos extremos, controle e raciocínio veloz.</p>
+  </div>
+</div>
+<h3 class="text-xl font-semibold text-white text-center">Tênis de mesa</h3>
+<a href="{{ route('login.form') }}" class="relative rounded px-5 py-2.5 overflow-hidden group bg-indigo-600 hover:bg-gradient-to-r hover:from-indigo-600 hover:to-indigo-500 text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 transition-all duration-300 mt-4 w-full block text-center">
+  <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  <span class="relative">Comprar</span>
+</a>
+</div>
+
+<!-- Futebol -->
+<div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 relative overflow-hidden">
+<div class="relative h-64 rounded-lg mb-4 overflow-hidden group">
+  <img src="https://i.pinimg.com/736x/b3/e8/fd/b3e8fd3a38662282046fd030fd96c588.jpg"
+       alt="Imagem Neymar"
+       class="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"/>
+  <div class="absolute inset-0 bg-gray-900 bg-opacity-80 text-white flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-center">
+    <h4 class="text-xl font-bold mb-2 border-b-4 border-indigo-600 inline-block"">Neymar Jr.</h4>
+    <p class="text-sm">Ídolo brasileiro conhecido por sua criatividade, dribles e gols decisivos.</p>
+    <p class="text-xs mt-2 text-gray-300">O futebol é o esporte mais popular do mundo, misturando técnica, tática e emoção.</p>
+  </div>
+</div>
+<h3 class="text-xl font-semibold text-white text-center">Futebol</h3>
+<a href="{{ route('login.form') }}" class="relative rounded px-5 py-2.5 overflow-hidden group bg-indigo-600 hover:bg-gradient-to-r hover:from-indigo-600 hover:to-indigo-500 text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 transition-all duration-300 mt-4 w-full block text-center">
+  <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  <span class="relative">Comprar</span>
+</a>
+</div>
+
+<!-- Basquete -->
+<div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 relative overflow-hidden">
+<div class="relative h-64 rounded-lg mb-4 overflow-hidden group">
+  <img src="https://i.pinimg.com/736x/d2/a0/4b/d2a04b5ff9b4d58f72fafc95ec35b134.jpg"
+       alt="Imagem LeBron James"
+       class="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"/>
+  <div class="absolute inset-0 bg-gray-900 bg-opacity-80 text-white flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-center">
+    <h4 class="text-xl font-bold mb-2 border-b-4 border-indigo-600 inline-block"">LeBron James</h4>
+    <p class="text-sm">Um dos maiores nomes da NBA, símbolo de excelência e longevidade.</p>
+    <p class="text-xs mt-2 text-gray-300">O basquete envolve força, precisão e raciocínio rápido em quadra.</p>
+  </div>
+</div>
+<h3 class="text-xl font-semibold text-white text-center">Basquete</h3>
+<a href="{{ route('login.form') }}" class="relative rounded px-5 py-2.5 overflow-hidden group bg-indigo-600 hover:bg-gradient-to-r hover:from-indigo-600 hover:to-indigo-500 text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 transition-all duration-300 mt-4 w-full block text-center">
+  <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  <span class="relative">Comprar</span>
+</a>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Rodapé -->
+<footer class="bg-gray-950 text-gray-300 mt-10 pt-10 border-t border-gray-700">
+<div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 text-sm">
+
+  <!-- Institucional -->
+  <div>
+    <h3 class="text-white font-bold mb-4">Institucional</h3>
+    <ul class="space-y-2">
+      <li><a href="#" class="hover:text-indigo-400">Cadastre-se para receber novidades</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Cartão presente</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Mapa do site</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Black Friday</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Acompanhe seu pedido</a></li>
+    </ul>
+  </div>
+
+  <!-- Ajuda -->
+  <div>
+    <h3 class="text-white font-bold mb-4">Ajuda</h3>
+    <ul class="space-y-2">
+      <li><a href="#" class="hover:text-indigo-400">Dúvidas gerais</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Encontre seu tamanho</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Entregas</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Pedidos</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Devoluções</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Pagamentos</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Produtos</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Corporativo</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Fale conosco</a></li>
+    </ul>
+  </div>
+
+  <!-- Sobre -->
+  <div>
+    <h3 class="text-white font-bold mb-4">Sobre a Hydrax</h3>
+    <ul class="space-y-2">
+      <li><a href="#" class="hover:text-indigo-400">Propósito</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Sustentabilidade</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Sobre a SURA_CGKRY, Inc.</a></li>
+      <li><a href="#" class="hover:text-indigo-400">Redes sociais</a></li>
+    </ul>
+  </div>
+
+  <!-- Pagamento e apps -->
+  <div>
+    <h3 class="text-white font-bold mb-4">Formas de pagamento</h3>
+    <ul class="space-y-2">
+      <li>Mastercard</li>
+      <li>Visa</li>
+      <li>Amex</li>
+      <li>Elo</li>
+      <li>Hipercard</li>
+      <li>Discover</li>
+      <li>Pix</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Linha inferior -->
+<div class="border-t border-gray-700 text-center text-xs text-gray-500 py-6 px-4">
+  <p>Brasil | <a href="#" class="hover:text-indigo-400">Política de privacidade</a>| <a href="#" class="hover:text-indigo-400">Política de cookies</a> | <a href="#" class="hover:text-indigo-400">Termos de uso</a></p>
+  <p class="mt-2">&copy; 2025 <strong>Hydrax</strong>. Todos os direitos reservados.</p>
+</div>
+</footer>
   </main>
 
 </body>
