@@ -19,33 +19,46 @@ class EnderecoUsuarioFinalController extends Controller
     }
 
     // Processa o formulário de cadastro de endereço
-    public function store(Request $request, $id)
-    {
-        // Verifica quantos endereços o usuário já possui
-        $quantidadeEnderecos = EnderecoUsuarioFinal::where('id_usuario', $id)->count();
-    
-        if ($quantidadeEnderecos >= 3) {
-            return redirect()->back()->withErrors(['limite' => 'Você já cadastrou o número máximo de 3 endereços.']);
-        }
-    
-        // Validação dos dados do formulário
-        $validated = $request->validate([
-            'cidade' => 'required|string|max:60',
-            'cep' => 'required|string|max:10',
-            'bairro' => 'required|string|max:60',
-            'estado' => 'required|string|max:2',
-            'rua' => 'required|string|max:60',
-            'numero' => 'required|string|max:10',
-        ]);
-    
-        // Criação do novo endereço associado ao usuário
-        $endereco = new EnderecoUsuarioFinal($validated);
-        $endereco->id_usuario = $id;
-        $endereco->save();
-    
-        return redirect()->back()->with('success', 'Endereço salvo com sucesso!');
+   public function store(Request $request, $id)
+{
+    // Verifica quantos endereços o usuário já possui
+    $quantidadeEnderecos = EnderecoUsuarioFinal::where('id_usuario', $id)->count();
+
+    if ($quantidadeEnderecos >= 3) {
+        return redirect()->back()->withErrors(['limite' => 'Você já cadastrou o número máximo de 3 endereços.']);
     }
-    
+
+    // Validação dos dados do formulário
+    $validated = $request->validate([
+        'cidade' => 'required|string|max:60',
+        'cep' => 'required|string|max:10',
+        'bairro' => 'required|string|max:60',
+        'estado' => 'required|string|max:2',
+        'rua' => 'required|string|max:60',
+        'numero' => 'required|string|max:10',
+    ]);
+
+    // Verifica se o endereço já existe para o mesmo usuário
+    $enderecoExistente = EnderecoUsuarioFinal::where('id_usuario', $id)
+        ->where('cidade', $validated['cidade'])
+        ->where('cep', $validated['cep'])
+        ->where('bairro', $validated['bairro'])
+        ->where('estado', $validated['estado'])
+        ->where('rua', $validated['rua'])
+        ->where('numero', $validated['numero'])
+        ->exists();
+
+    if ($enderecoExistente) {
+        return redirect()->back()->withErrors(['duplicado' => 'Este endereço já está cadastrado.']);
+    }
+
+    // Criação do novo endereço associado ao usuário
+    $endereco = new EnderecoUsuarioFinal($validated);
+    $endereco->id_usuario = $id;
+    $endereco->save();
+
+    return redirect()->back()->with('success', 'Endereço salvo com sucesso!');
+}
 
     // Exibe o formulário de edição
     public function edit($id, $endereco_id)
