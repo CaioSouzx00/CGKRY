@@ -97,7 +97,7 @@ class FornecedorController extends Controller
     public function index()
     {
         $pendentes = FornecedorPendente::all();
-        return view('admin.fornecedores.lista', compact('pendentes'));
+        return view('admin.fornecedores.lista', compact('pendentes'));   
     }
 
     // Aprovar fornecedor
