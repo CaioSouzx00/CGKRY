@@ -6,6 +6,12 @@
   <title>Fornecedores Pendentes</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+
 <style>
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0); }

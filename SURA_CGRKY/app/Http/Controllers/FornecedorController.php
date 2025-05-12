@@ -102,24 +102,36 @@ class FornecedorController extends Controller
 
     // Aprovar fornecedor
     public function aprovar($id)
-    {
-        $pendente = FornecedorPendente::findOrFail($id);
+{
+    $pendente = FornecedorPendente::findOrFail($id);
 
-        $fornecedor = Fornecedor::create([
-            'nome_empresa' => $pendente->nome_empresa,
-            'email' => $pendente->email,
-            'telefone' => $pendente->telefone,
-            'cnpj' => $pendente->cnpj,
-            'senha' => $pendente->senha, // já criptografada
-            'status' => 'aprovado',
+    // Verificar se já existe fornecedor com o mesmo e-mail ou CNPJ
+    $existeEmail = Fornecedor::where('email', $pendente->email)->exists();
+    $existeCNPJ = Fornecedor::where('cnpj', $pendente->cnpj)->exists();
+
+    if ($existeEmail || $existeCNPJ) {
+        return redirect()->route('admin.fornecedores')->withErrors([
+            'erro' => 'Já existe um fornecedor com este e-mail ou CNPJ.'
         ]);
-
-        $pendente->delete();
-
-        Mail::to($fornecedor->email)->send(new FornecedorAprovadoMail($fornecedor));
-
-        return redirect()->route('admin.fornecedores')->with('success', 'Fornecedor aprovado com sucesso!');
     }
+
+    // Se não existir, aprova
+    $fornecedor = Fornecedor::create([
+        'nome_empresa' => $pendente->nome_empresa,
+        'email' => $pendente->email,
+        'telefone' => $pendente->telefone,
+        'cnpj' => $pendente->cnpj,
+        'senha' => $pendente->senha, // já criptografada
+        'status' => 'aprovado',
+    ]);
+
+    $pendente->delete();
+
+    Mail::to($fornecedor->email)->send(new FornecedorAprovadoMail($fornecedor));
+
+    return redirect()->route('admin.fornecedores')->with('success', 'Fornecedor aprovado com sucesso!');
+}
+
 
     // Rejeitar fornecedor
     public function rejeitar($id)
