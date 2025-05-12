@@ -7,6 +7,13 @@
 </head>
 <body>
 <div class="container">
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+
     <h2>Fornecedores Pendentes</h2>
 
     @foreach ($pendentes as $fornecedor)
