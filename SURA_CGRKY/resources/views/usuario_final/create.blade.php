@@ -163,11 +163,10 @@
           <span class="relative">Cadastrar</span>
         </button>
       </form>
-
-      <footer class="mt-6 text-center text-xs text-gray-500">
-        <p>&copy; 2025 <strong>Hydrax</strong>. Todos os direitos reservados.</p>
-      </footer>
     </div>
+    <footer class="mt-6 flex justify-center text-xs text-gray-500">
+  <p class="text-center">&copy; 2025 <strong>Hydrax</strong>. Todos os direitos reservados.</p>
+</footer>
   </main>
 
   <script>
