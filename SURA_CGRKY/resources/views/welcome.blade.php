@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sidebar com botão X</title>
+  <title>Hydrax</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -16,16 +16,16 @@
   <!-- Toggle (checkbox) -->
   <input type="checkbox" id="menu-toggle" class="hidden peer" />
 
-  <!-- Botão ☰ (aparece só quando menu fechado) -->
-  <label for="menu-toggle" class="fixed top-4 left-4 z-50 text-white bg-indigo-200 p-2 rounded cursor-pointer peer-checked:hidden">
+  <!-- Botão ☰ (menu fechado) -->
+  <label for="menu-toggle" class="fixed top-4 left-4 z-50 text-white bg-indigo-500 hover:bg-indigo-600 transition p-2 rounded-md shadow-lg cursor-pointer peer-checked:hidden">
     ☰
   </label>
 
   <!-- Sidebar -->
-  <aside class="fixed top-0 left-0 h-full w-64 bg-black text-white z-40 transform -translate-x-full peer-checked:translate-x-0 transition-transform duration-300">
+  <aside class="fixed top-0 left-0 h-full w-64 bg-black text-white z-40 transform -translate-x-full peer-checked:translate-x-0 transition-transform duration-300 shadow-xl">
 
-    <!-- Botão ✕ (aparece dentro do menu quando aberto) -->
-    <label for="menu-toggle" class="absolute top-4 right-4 text-white text-2xl cursor-pointer">
+    <!-- Botão ✕ (menu aberto) -->
+    <label for="menu-toggle" class="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-indigo-400 transition">
       ✕
     </label>
 
@@ -38,16 +38,16 @@
       <hr class="border-gray-500 opacity-40 mb-4">
 
       <nav class="space-y-3">
-        <a href="{{ route('login.form') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+        <a href="{{ route('login.form') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 hover:pl-6 rounded transition-all duration-300">
           <img src="/imagens/Testes/6.png" alt="Entrar" class="w-6 h-6 mr-3"> Entrar
         </a>
-        <a href="{{ route('usuario_final.create') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+        <a href="{{ route('usuario_final.create') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 hover:pl-6 rounded transition-all duration-300">
           <img src="/imagens/Post Jif 2025 (9).png" alt="Criar Conta" class="w-6 h-6 mr-3"> Criar Conta
         </a>
-        <a href="{{ route('fornecedor.login') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+        <a href="{{ route('fornecedor.login') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 hover:pl-6 rounded transition-all duration-300">
           <img src="/imagens/Testes/8.png" alt="Fornecedores" class="w-6 h-6 mr-3"> Fornecedores
         </a>
-        <a href="{{ route('admin.login.form') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 rounded transition">
+        <a href="{{ route('admin.login.form') }}" class="flex items-center text-lg pl-4 py-2 hover:bg-indigo-600 hover:pl-6 rounded transition-all duration-300">
           <img src="/imagens/Testes/7.png" alt="Administração" class="w-6 h-6 mr-3"> Administração
         </a>
       </nav>
@@ -60,19 +60,21 @@
 
   <!-- Conteúdo principal -->
   <main class="transition-all duration-300 peer-checked:ml-64 ml-0">
-  <section class="h-20"></section>
-    <section class="bg-gradient-to-r from-indigo-800 to-indigo-600 py-20 text-center">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">O melhor do esporte em um só lugar</h2>
-        <p class="text-lg text-gray-200 mb-6">Confira nossas categorias e escolha o melhor tênis para seu esporte favorito!</p>
-        <a href="#Categorias" class="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-200 transition">Ver Categorias</a>
-      </div>
-    </section>
     <section class="h-20"></section>
 
+    <section class="bg-gradient-to-r from-indigo-800 to-indigo-600 py-20 text-center shadow-inner">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white drop-shadow-lg">O melhor do esporte em um só lugar</h2>
+        <p class="text-lg text-gray-200 mb-6">Confira nossas categorias e escolha o melhor tênis para seu esporte favorito!</p>
+        <a href="#Categorias" class="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-full shadow hover:bg-indigo-100 hover:scale-105 transition-transform duration-300">Ver Categorias</a>
+      </div>
+    </section>
 
-<section id="Categorias" class="py-16">
-  <div class="container mx-auto px-6">
+    <section class="h-20"></section>
+
+    <!-- CATEGORIAS -->
+    <section id="Categorias" class="py-16">
+    <div class="container mx-auto px-6">
     <h2 class="text-4xl font-bold text-center text-white mb-8 tracking-wide border-b-4 border-indigo-600 pb-2">
       Categorias
     </h2>
@@ -158,72 +160,67 @@
 
     </div>
   </div>
-</section>
+    </section>
 
-<!-- Rodapé -->
-<footer class="bg-gray-950 text-gray-300 mt-10 pt-10 border-t border-gray-700">
-<div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 text-sm">
+    <!-- RODAPÉ -->
+    <footer class="bg-gray-950 text-gray-300 mt-10 pt-10 border-t border-gray-700">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 text-sm">
 
-  <!-- Institucional -->
-  <div>
-    <h3 class="text-white font-bold mb-4">Institucional</h3>
-    <ul class="space-y-2">
-      <li><a href="#" class="hover:text-indigo-400">Cadastre-se para receber novidades</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Cartão presente</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Mapa do site</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Black Friday</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Acompanhe seu pedido</a></li>
-    </ul>
-  </div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Institucional</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-indigo-400 transition">Cadastre-se para receber novidades</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Cartão presente</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Mapa do site</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Black Friday</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Acompanhe seu pedido</a></li>
+          </ul>
+        </div>
 
-  <!-- Ajuda -->
-  <div>
-    <h3 class="text-white font-bold mb-4">Ajuda</h3>
-    <ul class="space-y-2">
-      <li><a href="#" class="hover:text-indigo-400">Dúvidas gerais</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Encontre seu tamanho</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Entregas</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Pedidos</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Devoluções</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Pagamentos</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Produtos</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Corporativo</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Fale conosco</a></li>
-    </ul>
-  </div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Ajuda</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-indigo-400 transition">Dúvidas gerais</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Encontre seu tamanho</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Entregas</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Pedidos</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Devoluções</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Pagamentos</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Produtos</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Corporativo</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Fale conosco</a></li>
+          </ul>
+        </div>
 
-  <!-- Sobre -->
-  <div>
-    <h3 class="text-white font-bold mb-4">Sobre a Hydrax</h3>
-    <ul class="space-y-2">
-      <li><a href="#" class="hover:text-indigo-400">Propósito</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Sustentabilidade</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Sobre a SURA_CGKRY, Inc.</a></li>
-      <li><a href="#" class="hover:text-indigo-400">Redes sociais</a></li>
-    </ul>
-  </div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Sobre a Hydrax</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-indigo-400 transition">Propósito</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Sustentabilidade</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Sobre a SURA_CGKRY, Inc.</a></li>
+            <li><a href="#" class="hover:text-indigo-400 transition">Redes sociais</a></li>
+          </ul>
+        </div>
 
-  <!-- Pagamento e apps -->
-  <div>
-    <h3 class="text-white font-bold mb-4">Formas de pagamento</h3>
-    <ul class="space-y-2">
-      <li>Mastercard</li>
-      <li>Visa</li>
-      <li>Amex</li>
-      <li>Elo</li>
-      <li>Hipercard</li>
-      <li>Discover</li>
-      <li>Pix</li>
-    </ul>
-  </div>
-</div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Formas de pagamento</h3>
+          <ul class="space-y-2">
+            <li>Mastercard</li>
+            <li>Visa</li>
+            <li>Amex</li>
+            <li>Elo</li>
+            <li>Hipercard</li>
+            <li>Discover</li>
+            <li>Pix</li>
+          </ul>
+        </div>
+      </div>
 
-<!-- Linha inferior -->
-<div class="border-t border-gray-700 text-center text-xs text-gray-500 py-6 px-4">
-  <p>Brasil | <a href="#" class="hover:text-indigo-400">Política de privacidade</a>| <a href="#" class="hover:text-indigo-400">Política de cookies</a> | <a href="#" class="hover:text-indigo-400">Termos de uso</a></p>
-  <p class="mt-2">&copy; 2025 <strong>Hydrax</strong>. Todos os direitos reservados.</p>
-</div>
-</footer>
+      <div class="border-t border-gray-700 text-center text-xs text-gray-500 py-6 px-4">
+        <p>Brasil | <a href="#" class="hover:text-indigo-400">Política de privacidade</a> | <a href="#" class="hover:text-indigo-400">Política de cookies</a> | <a href="#" class="hover:text-indigo-400">Termos de uso</a></p>
+        <p class="mt-2">&copy; 2025 <strong>Hydrax</strong>. Todos os direitos reservados.</p>
+      </div>
+    </footer>
   </main>
 
 </body>
