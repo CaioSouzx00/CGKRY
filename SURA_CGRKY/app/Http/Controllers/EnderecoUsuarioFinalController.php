@@ -57,7 +57,9 @@ class EnderecoUsuarioFinalController extends Controller
     $endereco->id_usuario = $id;
     $endereco->save();
 
-    return redirect()->back()->with('success', 'Endereço salvo com sucesso!');
+    return redirect()
+        ->route('usuario.enderecos', $id)
+        ->with('success', 'Endereço cadastrado com sucesso!');;
 }
 
     // Exibe o formulário de edição
@@ -87,7 +89,7 @@ class EnderecoUsuarioFinalController extends Controller
     
         $endereco->update($request->all());
     
-        return redirect()->route('endereco.index', ['id' => $id])->with('success', 'Endereço atualizado com sucesso!');
+        return redirect()->route('usuario.enderecos', ['id' => $id])->with('success', 'Endereço atualizado com sucesso!');
     }
 
     // Exibe todos os endereços de um usuário
@@ -107,6 +109,6 @@ class EnderecoUsuarioFinalController extends Controller
 
         $endereco->delete();
 
-        return redirect()->route('endereco.index', ['id' => $id])->with('success', 'Endereço excluído com sucesso!');
+        return redirect()->route('usuario.enderecos', ['id' => $id])->with('success', 'Endereço excluído com sucesso!');
     }
 }

@@ -151,15 +151,6 @@
               class="w-full mt-1 px-4 py-2 bg-gray-900/40 text-white/30 hover:text-white focus:text-white border border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-indigo-900/40" />
           </div>
 
-          <!-- Foto -->
-          <div>
-            <label for="foto"
-              class="block text-sm font-medium text-gray-300 drop-shadow-[0_0_2px_rgba(139,92,246,0.4)]">Foto</label>
-            <input id="foto" type="file" name="foto" accept="image/*"
-              class="w-full mt-1 px-4 py-[0.4rem] bg-gray-900/40 text-white/30 hover:text-white border border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 file:bg-gray-900/40 file:text-indigo-500 file:border file:border-indigo-500 file:rounded file:text-indigo-500 hover:file:bg-indigo-500 hover:file:text-white transition-all focus:bg-indigo-900/40 focus:text-white" />
-          </div>
-        </div>
-
         <!-- Botão de envio -->
         <button type="submit"
           class="relative w-full mt-4 py-3 inline-flex items-center justify-center text-lg font-medium bg-black/20 text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group overflow-hidden">

@@ -210,8 +210,6 @@
 </header>
 
 
-
-
 <!-- Script -->
 <script>
   const btn = document.getElementById('enderecoBtn');
@@ -245,20 +243,6 @@
         <p><strong>CNPJ:</strong> {{ $usuario->cnpj }}</p>
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
         <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
-
-        <a href="{{ route('fornecedor.endereco.create', $usuario->id) }}" class="relative inline-flex items-center justify-start px-2 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-          <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-          <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-            Cadastrar Endereço
-          </span>
-        </a>
-
-        <a href="{{ route('fornecedor.endereco.index', $usuario->id) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-          <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-          <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-            Listar Endereços
-          </span>
-        </a>
       </div>
     @else
       <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-white bg-[length:200%_200%] bg-left hover:bg-right transition-all duration-700 ease-in-out drop-shadow-xl mb-8">
@@ -269,22 +253,6 @@
         <p><strong>CPF:</strong> {{ $usuario->cpf }}</p>
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
         <p><strong>Telefone:</strong> {{ $usuario->telefone }}</p>
-
-        <div class="flex space-x-4 mt-4">
-          <a href="{{ route('endereco.create', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-1 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-            <span class="w-40 h-40 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-            <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-              Cadastrar Endereço
-            </span>
-          </a>
-
-          <a href="{{ route('usuario.enderecos', ['id' => $usuario->id]) }}" class="relative inline-flex items-center justify-start px-4 py-2 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group">
-            <span class="w-40 h-40 rounded rotate-[-40deg] bg-blue-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-7 ml-7 group-hover:ml-0 group-hover:mb-28 group-hover:translate-x-0"></span>
-            <span class="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
-              Listar Endereços
-            </span>
-          </a>
-        </div>
       </div>
     @endif
   </main>
