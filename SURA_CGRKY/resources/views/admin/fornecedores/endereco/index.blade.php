@@ -188,7 +188,7 @@
       @endif
     </div>
   </div>
-  <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
+    <footer class="mt-16 text-center text-sm text-white/60 hover:text-[#7f5af0] transition-colors duration-300">
       &copy; 2025 <strong>SURA</strong> - Sistema Unificado de Registro e Administração
     </footer>
 </body>

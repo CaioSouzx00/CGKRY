@@ -82,7 +82,6 @@
   </svg>
 </a>
 
-  <!-- Conteúdo -->
   <div class="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
     <div class="bg-black bg-opacity-50 backdrop-blur-md border border-gray-700 shadow-xl rounded-3xl p-8 w-full max-w-6xl">
       <h2 class="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-500 to-white">Endereços de {{ $usuario->nome_completo }}</h2>
